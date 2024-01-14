@@ -6,10 +6,9 @@ package main
 import (
 	"fmt"
 	"log"
-	"os"
 	"regexp"
 	"strconv"
-	"strings"
+	"github.com/DeanLogan/advent-of-code-2023/libs"
 )
 
 func main() {
@@ -26,9 +25,7 @@ func partOne(){
 
 	ans := 0
 
-	data := string(allFileContent("day3/input.txt"))
-	data = strings.ReplaceAll(data, "\r\n", "\n")
-	dataSlice := strings.Split(data, "\n")
+	dataSlice := libs.FileToSlice("day3/input.txt", "\n")
 	numsFound := []string{}
 
 	// checks first line characters then finds the corresponding numbers for these characters
@@ -56,9 +53,7 @@ func partTwo(){
 		return
 	}
 
-	data := string(allFileContent("day3/input.txt"))
-	data = strings.ReplaceAll(data, "\r\n", "\n")
-	dataSlice := strings.Split(data, "\n")
+	dataSlice := libs.FileToSlice("day3/input.txt", "\n")
 	//numsFound := [][]string{}
 
 	// checks first line characters then finds the corresponding numbers for these characters
@@ -138,7 +133,7 @@ func getAllNumsForChar(character []int, numsFound []string, currentLine string, 
 func getFullNum(line string, startingSide bool) string {
 	numStr := ""
 	if(!startingSide){
-		line = reverse(line)
+		line = libs.ReverseString(line)
 	}
 
 	for _, character := range line {
@@ -150,7 +145,7 @@ func getFullNum(line string, startingSide bool) string {
 	}
 
 	if(!startingSide){
-		numStr = reverse(numStr)
+		numStr = libs.ReverseString(numStr)
 	}
 
 	return numStr
@@ -169,18 +164,3 @@ func getFullNumFromMiddle(line string, middleIndex int) string {
 	return numStr
 }
 
-func allFileContent(filePath string) []byte {
-    content, err := os.ReadFile(filePath)
-    if err != nil {
-        log.Fatal(err)
-    }
-
-    return content
-}
-
-func reverse(s string) (result string) {
-	for _,v := range s {
-		result = string(v) + result
-	}
-	return result 
-}

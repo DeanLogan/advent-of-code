@@ -1,13 +1,12 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
 	"log"
-	"os"
 	"regexp"
 	"strconv"
 	"strings"
+	"github.com/DeanLogan/advent-of-code-2023/libs"
 )
 
 func main() {
@@ -16,7 +15,7 @@ func main() {
 }
 
 func partOne(){
-    scanner := readfile("day1/input1.txt")
+    scanner := libs.GetScannerForFile("day1/input1.txt")
 	if err := scanner.Err(); err != nil {
 		log.Fatal(err, "Failed to scan file")
 		return 
@@ -41,7 +40,7 @@ func partOne(){
 }
 
 func partTwo(){
-	scanner := readfile("day1/input2.txt")
+	scanner := libs.GetScannerForFile("day1/input1.txt")
 
 	if err := scanner.Err(); err != nil {
 		log.Fatal(err, "Failed to scan file")
@@ -87,14 +86,4 @@ func replaceWordWithDigit(text string) string {
 		text = strings.ReplaceAll(text, word, digit)
 	}
 	return text
-}
-
-func readfile(filePath string) *bufio.Scanner {
-	file, err := os.Open(filePath)
-    if err != nil {
-        log.Fatal(err, " Failed to open file")
-		return nil
-    }
-
-    return bufio.NewScanner(file)
 }
