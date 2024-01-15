@@ -7,8 +7,19 @@ As I found myself quite busy during december due to some exams/courswork at univ
 Visit [https://adventofcode.com/](https://adventofcode.com/) to find out more about advent of code
 
 # Repo Structure
-Each day is seperated into its corresponding folder, there is a single go.mod file so to run the code for each day you can simple cd into the root of the advent-of-code-2023 folder and enter the following:
+
+- Each day (puzzle) is seperated into its corresponding folder, there is a single go.mod file so to run the code for each day you can simple cd into the root of the advent-of-code-2023 folder and enter the following:
 
 ```console
 go run ./day{number of the day you want to see}
 ```
+
+- The libs folder contains functions that are used across various days, e.g. functions for reading .txt files, string manipulation, etc.
+
+- The template folder contains code that generates the template that I use for each day, it will create a folder for the day selected, along with a go file with some template code, a README.md and then a input.txt file which will connect to the corresponding day on advent of code 2023 and scrap the input data and place it into the input.txt file. To run create a template enter the following into the console:
+
+```console
+go run ./template
+```
+
+Then you will be prompted with the day you want to create the template for.
