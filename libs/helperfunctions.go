@@ -4,11 +4,12 @@ import (
 	"bufio"
 	"log"
 	"os"
+	"strconv"
 	"strings"
 )
 
 /*
-	This file contains a list of functions that are used frequently across all of the days so instead of copying and pasting them over 
+	This file contains a list of functions that are used frequently across all of the days so instead of copying and pasting them over
 	I created a mini library of functions that I can use.
 */
 
@@ -50,6 +51,16 @@ func SplitAtChar(str string, char rune) (string, string) {
     return str, str
 }
 
+// SplitAtStr splits a string at the last occurrence of a given string.
+// It returns two strings: the part before the character and the part after the character.
+func SplitAtStr(str string, strToSplitAt string) (string, string) {
+    index := strings.LastIndex(str, strToSplitAt)
+    if index != -1 {
+        return str[:index], str[index+1:]
+    }
+    return str, str
+}
+
 // ReverseString reverses a string and returns the result.
 func ReverseString(s string) (result string) {
     for _,v := range s {
@@ -75,4 +86,72 @@ func SearchForStrInSlice(str string, slice []string) bool {
         }
     }
     return false
+}
+
+// converts any string into a slice of ints, if a rune/character in the string cannot be converted then it is ignored for the final slice
+func StrToIntSlice(str string, delimiter string) []int {
+    strSlice := strings.Split(str, delimiter)
+    intSlice := []int{}
+    for _, strNum := range strSlice{
+        strNum = strings.ReplaceAll(strNum, " ", "")
+        num, err := strconv.Atoi(strNum)
+        // ignore any strings or characters that cannot be converted into an int
+        if err == nil{
+            intSlice = append(intSlice, num)
+        }
+    }
+    return intSlice
+}
+
+// returns the index value of the maximum value in a slice
+func IndexOfMax(steps []int) int {
+    maxIndex := 0
+    for i, value := range steps {
+        if value > steps[maxIndex] {
+            maxIndex = i
+        }
+    }
+    return maxIndex
+}
+
+// finds the max value of a slice and returns it
+func MaxOfSlice(steps []int) int {
+    if len(steps) == 0 {
+        return 0 // or return an error
+    }
+    maxIndex := IndexOfMax(steps)
+    return steps[maxIndex]
+}
+
+// returns the index value of the minimum value in a slice
+func IndexOfMin(steps []int) int {
+    minIndex := 0
+    for i, value := range steps {
+        if value < steps[minIndex] {
+            minIndex = i
+        }
+    }
+    return minIndex
+}
+
+// finds the min value of a slice and returns it
+func MinOfSlice(steps []int) int {
+    if len(steps) == 0 {
+        return 0 // or return an error
+    }
+    minIndex := IndexOfMin(steps)
+    return steps[minIndex]
+}
+
+// Gcd calculates the Greatest Common Divisor (GCD) of two integers.
+func Gcd(a, b int) int {
+	for b != 0 {
+		a, b = b, a%b
+	}
+	return a
+}
+
+// Lcm calculates the Least Common Multiple (LCM) of two integers.
+func Lcm(a, b int) int {
+	return a / Gcd(a, b) * b
 }
