@@ -77,6 +77,14 @@ func Min(a, b int) int {
     return b
 }
 
+// Max returns the larger of two integers
+func Max(a, b int) int {
+    if a > b {
+        return a
+    }
+    return b
+}
+
 // SearchForStrInSlice performs a linear search for a string in a slice of strings.
 // It returns true if the string is found and is not an empty string, false otherwise.
 func SearchForStrInSlice(str string, slice []string) bool {
@@ -154,4 +162,20 @@ func Gcd(a, b int) int {
 // Lcm calculates the Least Common Multiple (LCM) of two integers.
 func Lcm(a, b int) int {
 	return a / Gcd(a, b) * b
+}
+
+// Inserts a string into a specific index of a []string
+func InsertIntoSlice(slice []string, index int, value string) []string {
+    slice = append(slice, "")
+    copy(slice[index+1:], slice[index:])
+    slice[index] = value
+    return slice
+}
+
+// Absolute of any int value
+func Abs(val int) int {
+    if val < 0 {
+        return -val
+    }
+    return val
 }
