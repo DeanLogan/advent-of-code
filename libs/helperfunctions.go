@@ -25,8 +25,8 @@ func AllFileContent(filePath string) []byte {
 // FileToSlice reads a file, replaces all "\r\n" with "\n", and splits the content by a given delimiter.
 // It returns a slice of strings.
 func FileToSlice(filePath string, delimiter string) []string {
-    fileContent := AllFileContent(filePath)
-    data := strings.ReplaceAll(string(fileContent), "\r\n", "\n")
+    fileContent := strings.ReplaceAll(string(AllFileContent(filePath)), "\r\n", "\n")
+    data := strings.ReplaceAll(string(fileContent), "\n\n", "\n")
     return strings.Split(data, delimiter)
 }
 
@@ -178,4 +178,56 @@ func Abs(val int) int {
         return -val
     }
     return val
+}
+
+// Transposes a string, this has the effect of rotating the original string 90 degrees counterclockwise (flipping it from horizontal to vertical orientation).
+func TransposeString(str string) string {
+    lines := strings.Split(str, "\n")
+    newStr := []string{}
+    for c := 0; c < len(lines[0]); c++ {
+        row := ""
+        for r := 0; r < len(lines); r++ {
+            row += string(lines[r][c])
+        }
+        newStr = append(newStr, row)
+    }
+    return strings.Join(newStr, "\n")
+}
+
+// Transposes a []string, this has the effect of rotating the original string 90 degrees counterclockwise (flipping it from horizontal to vertical orientation). 
+// Assumes the []string represents each line with a different element
+func TransposeStringSlice(slice []string) []string {
+    if len(slice) == 0 {
+        return []string{}
+    }
+
+    maxLength := 0
+    for _, str := range slice {
+        if len(str) > maxLength {
+            maxLength = len(str)
+        }
+    }
+
+    transposed := make([]string, maxLength)
+    for i := range transposed {
+        transposed[i] = ""
+    }
+
+    for _, str := range slice {
+        for i, char := range str {
+            transposed[i] += string(char)
+        }
+    }
+
+    return transposed
+}
+
+// perform a linear search on a string for a given character
+func SearchForCharInStr(str string, charToFind rune) bool {
+    for _, char := range str {
+        if char == charToFind {
+            return true
+        }
+    }
+    return false
 }
