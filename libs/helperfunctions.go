@@ -231,3 +231,11 @@ func SearchForCharInStr(str string, charToFind rune) bool {
     }
     return false
 }
+
+// abs for a float value
+func AbsFloat(x float64) float64 {
+    if x < 0 {
+        return -x
+    }
+    return x
+}
