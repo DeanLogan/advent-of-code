@@ -19,7 +19,7 @@ func main() {
 }
 
 func partOne() {	
-	maps := libs.FileToSlice("day5/input.txt", "\n\n")
+	maps := libs.FileToSlice("day05/input.txt", "\n\n")
 
 	firstLine := maps[0]
 	seeds := strings.Split(firstLine, " ")
@@ -107,7 +107,7 @@ type Transform struct {
 }
 
 func parse() ([]int, [7]Map) {
-	scanner := libs.GetScannerForFile("day5/input.txt")
+	scanner := libs.GetScannerForFile("day05/input.txt")
 
 	seeds := []int{}
 	scanner.Scan()

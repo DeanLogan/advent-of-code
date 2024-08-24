@@ -25,7 +25,7 @@ func partOne(){
 
 	ans := 0
 
-	dataSlice := libs.FileToSlice("day3/input.txt", "\n")
+	dataSlice := libs.FileToSlice("day03/input.txt", "\n")
 	numsFound := []string{}
 
 	// checks first line characters then finds the corresponding numbers for these characters
@@ -53,7 +53,7 @@ func partTwo(){
 		return
 	}
 
-	dataSlice := libs.FileToSlice("day3/input.txt", "\n")
+	dataSlice := libs.FileToSlice("day03/input.txt", "\n")
 	//numsFound := [][]string{}
 
 	// checks first line characters then finds the corresponding numbers for these characters

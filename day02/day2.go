@@ -14,7 +14,7 @@ func main() {
 }
 
 func partOne(){
-	scanner := libs.GetScannerForFile("day2/input.txt")
+	scanner := libs.GetScannerForFile("day02/input.txt")
 	if err := scanner.Err(); err != nil {
 		log.Fatal(err, "Failed to scan file")
 		return 
@@ -70,7 +70,7 @@ func isGameValid(line string) bool {
 }
 
 func partTwo(){
-	scanner := libs.GetScannerForFile("day2/input.txt")
+	scanner := libs.GetScannerForFile("day02/input.txt")
 	if err := scanner.Err(); err != nil {
 		log.Fatal(err, "Failed to scan file")
 		return 

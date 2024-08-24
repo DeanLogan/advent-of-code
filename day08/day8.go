@@ -21,7 +21,7 @@ func main(){
 
 func part1(){
     ans := 0
-    lines := string(libs.AllFileContent("day8/input.txt"))
+    lines := string(libs.AllFileContent("day08/input.txt"))
     directions, tree := libs.SplitAtStr(lines, "\n\n")
     tree = tree[1:] // remove first line as it is just an empty space
     treeSlice := strings.Split(tree, "\n")
@@ -56,7 +56,7 @@ func findNextValue(direction rune, nodeParent string) string {
 }
 
 func part2(){
-    lines := string(libs.AllFileContent("day8/input.txt"))
+    lines := string(libs.AllFileContent("day08/input.txt"))
     directions, tree := libs.SplitAtStr(lines, "\n\n")
     tree = tree[1:] // remove first line as it is just an empty space
     treeSlice := strings.Split(tree, "\n")
@@ -86,11 +86,11 @@ func part2(){
 
 // On reddit some people were frustracted (https://www.reddit.com/r/adventofcode/comments/18dh4p8/2023_day_8_part_2_im_a_bit_frustrated/) that part 2 could only 
 // be solved by abusing a rule where the LCM of inital steps taken gives the correct answer, however this might not always be a case with a different input. 
-// So as I thought it would be interesting to give it a go I created a way that would work for other inputs (however it is extremely slow). It follows how the 
+// So as I thought it would be interesting to give it a go. I created a way that would work for other inputs (however it is extremely slow). It follows how the 
 // problem is phrased closer, meaning that it will perform each of the searching steps until all the steps completed to find Z for each of the starting 
 // points are the same.
 func part2AltWay(){
-    lines := string(libs.AllFileContent("day8/input.txt"))
+    lines := string(libs.AllFileContent("day08/input.txt"))
     directions, tree := libs.SplitAtStr(lines, "\n\n")
     tree = tree[1:] // remove first line as it is just an empty space
     treeSlice := strings.Split(tree, "\n")

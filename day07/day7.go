@@ -64,7 +64,7 @@ func part1(){
 
     // Convert the .txt into a slice of games in the format of the Game struct
     ans := 0
-    lines := libs.FileToSlice("day7/input.txt", "\n")
+    lines := libs.FileToSlice("day07/input.txt", "\n")
     games := []Game{}
     for i:=0; i<len(lines);i++{
         game := Game{}
@@ -211,7 +211,7 @@ func part2(){
 
     // Convert the .txt into a slice of games in the format of the Game struct
     ans := 0
-    lines := libs.FileToSlice("day7/input.txt", "\n")
+    lines := libs.FileToSlice("day07/input.txt", "\n")
     games := []Game{}
     for i:=0; i<len(lines);i++{
         game := Game{}

@@ -13,7 +13,7 @@ func main(){
 
 func part1(){
     ans := 0
-    lines := libs.FileToSlice("day9/input.txt", "\n")
+    lines := libs.FileToSlice("day09/input.txt", "\n")
 
     for _, line := range lines{
         historyOfValue := [][]int{libs.StrToIntSlice(line, " ")}
@@ -52,7 +52,7 @@ func calcDiffsForIntSlice(slice []int) []int {
 
 func part2(){
     ans := 0
-    lines := libs.FileToSlice("day9/input.txt", "\n")
+    lines := libs.FileToSlice("day09/input.txt", "\n")
 
     for _, line := range lines{
         historyOfValue := [][]int{libs.StrToIntSlice(line, " ")}

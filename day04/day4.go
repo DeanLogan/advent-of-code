@@ -13,7 +13,7 @@ func main() {
 }
 
 func partOne() {	
-	scanner := libs.GetScannerForFile("day4/input.txt")
+	scanner := libs.GetScannerForFile("day04/input.txt")
 	if err := scanner.Err(); err != nil {
 		log.Fatal(err, "Failed to scan file")
 		return 
@@ -49,7 +49,7 @@ func partOne() {
 }
 
 func partTwo() {
-	lines := libs.FileToSlice("day4/input.txt", "\n")
+	lines := libs.FileToSlice("day04/input.txt", "\n")
 
 	cards := make([]int, len(lines))
 	for i := range cards {

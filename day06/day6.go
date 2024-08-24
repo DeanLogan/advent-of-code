@@ -16,7 +16,7 @@ func main(){
 
 func partOne(){
 	ans := 1
-	lines := libs.FileToSlice("day6/input.txt", "\n")
+	lines := libs.FileToSlice("day06/input.txt", "\n")
 	times := libs.StrToIntSlice(lines[0], " ")
 	distances := libs.StrToIntSlice(lines[1], " ")
 	for i := 0; i < len(times); i++ {
@@ -37,7 +37,7 @@ func calcDist(buttonTime int, totalTime int) int{
 
 func partTwo(){
 	ans := 0
-	lines := libs.FileToSlice("day6/input.txt", "\n")
+	lines := libs.FileToSlice("day06/input.txt", "\n")
 
 	_, timeStr := libs.SplitAtChar(lines[0], ':')
 	timeStr = strings.ReplaceAll(timeStr, " ", "")

@@ -15,7 +15,7 @@ func main() {
 }
 
 func partOne(){
-    scanner := libs.GetScannerForFile("day1/input1.txt")
+    scanner := libs.GetScannerForFile("day01/input1.txt")
 	if err := scanner.Err(); err != nil {
 		log.Fatal(err, "Failed to scan file")
 		return 
@@ -40,7 +40,7 @@ func partOne(){
 }
 
 func partTwo(){
-	scanner := libs.GetScannerForFile("day1/input1.txt")
+	scanner := libs.GetScannerForFile("day01/input1.txt")
 
 	if err := scanner.Err(); err != nil {
 		log.Fatal(err, "Failed to scan file")
