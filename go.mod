@@ -1,4 +1,4 @@
-module github.com/DeanLogan/advent-of-code-2023
+module github.com/DeanLogan/advent-of-code
 
 go 1.23.0
 

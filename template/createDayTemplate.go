@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"os"
 	"strings"
-	"github.com/DeanLogan/advent-of-code-2023/template/webScraping"
+	"github.com/DeanLogan/advent-of-code/template/webScraping"
 )
 
-//create main function to execute the program
+// Create main function to execute the program
 func main() {
 	day := getinput()
 
@@ -27,12 +27,10 @@ func main() {
 }
 
 func getinput() string{
-	// Create a new bufio reader to read from standard input
 	reader := bufio.NewReader(os.Stdin)
 
 	fmt.Print("Enter the number of the day whos template you want to create: ")
 
-	// ReadString reads until the first occurrence of a delimiter, in this case, '\n' (newline)
 	userInput, err := reader.ReadString('\n')
 	if err != nil {
 		fmt.Println("Error reading user input:", err)
@@ -43,11 +41,10 @@ func getinput() string{
 }
 
 func createFolder(day string) string {
-	// Specify the name of the folder you want to create
 	folderName := "day"+day
 
 	// Create the folder
-	err := os.Mkdir(folderName, 0755) // 0755 is the permission mode, you can adjust it as needed
+	err := os.Mkdir(folderName, 0755) // 0755 is the permission mode
 	if err != nil {
 		fmt.Println("Error creating folder:", err)
 		return ""
@@ -58,22 +55,22 @@ func createFolder(day string) string {
 }
 
 func writeToFile(folder string, fileName string, content string) {	
-	err := os.WriteFile(folder+"/"+fileName, []byte(content), 0644) //create a new file
+	err := os.WriteFile(folder+"/"+fileName, []byte(content), 0644)
 
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 
-	fmt.Println("File is created successfully.") //print the success on the console
+	fmt.Println("File is created successfully.")
 }
 
 func createFile(folder string, fileName string){
-	file, err := os.Create(folder+"/"+fileName)  //create a new file
+	file, err := os.Create(folder+"/"+fileName)
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 	defer file.Close()
-	fmt.Println("File is created successfully.")  //print the success on the console
+	fmt.Println("File is created successfully.")  
 }
