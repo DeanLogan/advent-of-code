@@ -73,9 +73,9 @@ func FetchDataWithHeaders(url string, headers map[string]string) (string, error)
 	return string(body), nil
 }
 
-func GetWebScrapedData(urlEnd string) string{
+func GetWebScrapedData(year string, day string) string{
 	// URL to scrape
-	url := "https://adventofcode.com/2023/day/"+urlEnd
+	url := "https://adventofcode.com/"+year+"/day/"+day+"/input"
 
 	godotenv.Load()
 	cookieSessionKey := os.Getenv("COOKIE")
@@ -107,6 +107,10 @@ func GetWebScrapedData(urlEnd string) string{
 		return ""
 	} 
 
+	if htmlContent == "Please don't repeatedly request this endpoint before it unlocks! The calendar countdown is synchronized with the server time; the link will be enabled on the calendar the instant this puzzle becomes available." || htmlContent == "404 Page Not Found" {
+		return ""
+	}
+	
 	return htmlContent
 }
 

@@ -10,26 +10,49 @@ import (
 
 // Create main function to execute the program
 func main() {
-	day := getinput()
+	year := getinput("Enter the year that the template will be created in: ")
+	if year == "" {
+		return 
+	}
 
+	day := getinput("Enter the number of the day whos template you want to create: ")
 	if day == ""{
 		return
 	}
 
-	folderName := createFolder(day)
-	createFile(folderName, "README.md")
+	inputData := webScraping.GetWebScrapedData(year, day)
+	if inputData == "" {
+		fmt.Println("Data not available for selected year and date")
+		return
+	}
+
+	err := createFolder(year)
+	if err != nil {
+		fmt.Println("Problem with creating year folder")
+		return
+	}
 	
-	writeToFile(folderName, "input.txt", webScraping.GetWebScrapedData(day+"/input"))
+	err = createFolder(year+"\\day"+day)
+	if err != nil {
+		fmt.Println("Problem with creating day folder")
+		return
+	}
+
+	folderName := year+"\\day"+day
+	
+	writeToFile(folderName, "input.txt", inputData)
+
+	createFile(folderName, "README.md")
 
 	goFileContent := "package main\n\nimport (\n    \"fmt\"\n)\n\nfunc main(){\n    part1()\n    part2()\n}\n\nfunc part1(){\n    ans := 0\n    fmt.Println(\"The answer to part 1 for day "+day+" is:\", ans)\n}\n\nfunc part2(){\n    ans := 0\n    fmt.Println(\"The answer to part 2 for day "+day+" is:\", ans)\n}"
 
-	writeToFile(folderName, folderName+".go", goFileContent)
+	writeToFile(folderName, "day"+day+".go", goFileContent)
 }
 
-func getinput() string{
+func getinput(msg string) string {
 	reader := bufio.NewReader(os.Stdin)
 
-	fmt.Print("Enter the number of the day whos template you want to create: ")
+	fmt.Print(msg)
 
 	userInput, err := reader.ReadString('\n')
 	if err != nil {
@@ -40,18 +63,19 @@ func getinput() string{
 	return strings.TrimSpace(userInput)
 }
 
-func createFolder(day string) string {
-	folderName := "day"+day
+func createFolder(folderName string) error {
+    err := os.Mkdir(folderName, 0755) // 0755 is the permission mode
+    if err != nil {
+        if os.IsExist(err) {
+            fmt.Println("Folder already exists:", folderName)
+            return nil
+        }
+        fmt.Println("Error creating folder:", err)
+        return err
+    }
 
-	// Create the folder
-	err := os.Mkdir(folderName, 0755) // 0755 is the permission mode
-	if err != nil {
-		fmt.Println("Error creating folder:", err)
-		return ""
-	}
-
-	fmt.Println("Folder", folderName, "created successfully.")
-	return folderName
+    fmt.Println("Folder", folderName, "created successfully.")
+    return nil
 }
 
 func writeToFile(folder string, fileName string, content string) {	

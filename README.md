@@ -1,8 +1,6 @@
-# Advent Of Code 2023 in Go!
+# Advent Of Code in Go!
 
 Advent of code is a Advent calendar of programming puzzles, this features my solutions to the programming puzzles presented in the Advent of Code, a festive calendar of intriguing challenges. I've implemented these solutions using the Go programming language.
-
-As I found myself quite busy during december due to some exams/courswork at university I decided not to take part while the challanges were being realeased, but as those exams are finished now (thank god :)), I've finally found the time to delve into the Advent of Code puzzles. Given my limited experience with Go – just a single course under my belt – I saw this as an great opportunity to strengthen my knowledge of Go. 
 
 Visit [https://adventofcode.com/](https://adventofcode.com/) to find out more about advent of code
 
@@ -25,3 +23,9 @@ go run ./template
 ```
 
 Then you will be prompted with the day you want to create the template for.
+
+**NOTE:** Before you run the template file ensure you have set the COOKIE environment variable in a .env file created at the root of the project structure. This is necassary to get the input for puzzle as it differs for each user.
+
+# Advent Of Code in 2023, and how I got started doing this
+
+As I found myself quite busy during december due to some exams/courswork at university I decided not to take part while the challanges were being realeased, but as those exams are finished now (thank god :)), I've finally found the time to delve into the Advent of Code puzzles. Given my limited experience with Go – just a single course under my belt – I saw this as an great opportunity to strengthen my knowledge of Go. 
