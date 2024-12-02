@@ -73,9 +73,13 @@ func FetchDataWithHeaders(url string, headers map[string]string) (string, error)
 	return string(body), nil
 }
 
-func GetWebScrapedData(year string, day string) string{
+func GetWebScrapedData(year string, day string, getInput bool) string{
 	// URL to scrape
-	url := "https://adventofcode.com/"+year+"/day/"+day+"/input"
+	url := "https://adventofcode.com/"+year+"/day/"+day
+
+	if getInput {
+		url +="/input"
+	}
 
 	godotenv.Load()
 	cookieSessionKey := os.Getenv("COOKIE")
@@ -114,34 +118,62 @@ func GetWebScrapedData(year string, day string) string{
 	return htmlContent
 }
 
-func HtmlToReadme(htmlContent string) string {
-	// Remove HTML tags
-	re := regexp.MustCompile("<[^>]*>")
-	cleanedInput := re.ReplaceAllString(htmlContent, "")
+func HtmlToReadme(htmlContent string, year string, day string) string {
+	// Extract content within <main> tags
+	mainTagRegex := regexp.MustCompile(`(?s)<main>(.*?)</main>`)
+	mainContentMatch := mainTagRegex.FindStringSubmatch(htmlContent)
+	if len(mainContentMatch) < 2 {
+		return ""
+	}
+	mainContent := mainContentMatch[1]
 
-	// Replace multiple consecutive spaces with a single space
-	cleanedInput = strings.Join(strings.Fields(cleanedInput), " ")
+	// Process <h2> tags: Remove leading/trailing "---" and whitespace, add "##" and double newline
+	h2TagRegex := regexp.MustCompile(`(?s)<h2>(.*?)</h2>`)
+	h2Found := false
+	mainContent = h2TagRegex.ReplaceAllStringFunc(mainContent, func(match string) string {
+		inner := h2TagRegex.FindStringSubmatch(match)[1]
+		inner = strings.Trim(inner, "- \t\n") // Remove "---" and surrounding whitespace
+		header := fmt.Sprintf("## %s\n\n", inner)
+		if !h2Found {
+			h2Found = true
+			linkText := fmt.Sprintf("[Here](\"https://adventofcode.com/%s/day/%s\") is the link to the problem page on advent of code.\n\nThe input data for the puzzle can be found in the text files input1.txt for part 1 and input2.txt for part 2\n\n# Part 1\n\n", year, day)
+			return header + linkText
+		}
+		return header
+	})
 
-	// Extract relevant content using regex
-	// match := regexp.MustCompile(`# Day[\s\S]*?Part One ---`).FindStringSubmatch(cleanedInput)
-	// if len(match) < 1 {
-	// 	return "Error: Could not find relevant content in input."
-	// }
-	content := cleanedInput
+	// Prepend "- " to each <li> tag content
+	liTagRegex := regexp.MustCompile(`(?s)<li>(.*?)</li>`)
+	mainContent = liTagRegex.ReplaceAllString(mainContent, "- $1")
 
-	// Replace specific patterns to format the text
-	content = strings.ReplaceAll(content, "```\n", "")
-	content = strings.ReplaceAll(content, "```", "")
-	content = strings.ReplaceAll(content, "<em>", "")
-	content = strings.ReplaceAll(content, "</em>", "")
-	content = strings.ReplaceAll(content, "<code>", "")
-	content = strings.ReplaceAll(content, "</code>", "")
-	content = strings.ReplaceAll(content, "<a href", "[Here](https://adventofcode.com/2023/day/6) is the link")
-	content = strings.ReplaceAll(content, "</a>", "")
-	content = strings.ReplaceAll(content, "  [Share", "[Share")
-	content = strings.ReplaceAll(content, "<span title", "")
-	content = strings.ReplaceAll(content, "<p>", "")
-	content = strings.ReplaceAll(content, "</p>", "")
+	// Replace <code> tags with backticks (`).
+	codeTagRegex := regexp.MustCompile(`(?s)<code>(.*?)</code>`)
+	mainContent = codeTagRegex.ReplaceAllString(mainContent, "`$1`")
 
-	return content
+	// Replace <p> tags with double newlines.
+	pTagRegex := regexp.MustCompile(`(?s)<p>(.*?)</p>`)
+	mainContent = pTagRegex.ReplaceAllString(mainContent, "$1\n")
+
+	// Process <em> tags: Wrap content in ** unless inside <code>
+	emTagRegex := regexp.MustCompile(`(?s)<em>(.*?)</em>`)
+	mainContent = emTagRegex.ReplaceAllStringFunc(mainContent, func(match string) string {
+		inner := emTagRegex.FindStringSubmatch(match)[1]
+		// Skip if nested in <code>
+		if strings.Contains(match, "<code>") { 
+			return match
+		}
+		return fmt.Sprintf("**%s**", inner)
+	})
+
+	// Remove all remaining HTML tags.
+	remainingTagsRegex := regexp.MustCompile(`<[^>]*>`)
+	mainContent = remainingTagsRegex.ReplaceAllString(mainContent, "")
+
+	// Ignore everything below "To begin, get your puzzle input."
+	splitPhrase := "To begin, get your puzzle input."
+	if idx := strings.Index(mainContent, splitPhrase); idx != -1 {
+		mainContent = mainContent[:idx]
+	}
+
+	return strings.TrimSpace(mainContent)
 }

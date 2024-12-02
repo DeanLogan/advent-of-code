@@ -4,7 +4,9 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strconv"
 	"strings"
+
 	"github.com/DeanLogan/advent-of-code/template/webScraping"
 )
 
@@ -19,19 +21,32 @@ func main() {
 	if day == ""{
 		return
 	}
+	dayInt, err := strconv.Atoi(day)
+    if err != nil {
+        fmt.Println("Invalid day input")
+        return
+    }
 
-	inputData := webScraping.GetWebScrapedData(year, day)
+	inputData := webScraping.GetWebScrapedData(year, day, true)
 	if inputData == "" {
 		fmt.Println("Data not available for selected year and date")
 		return
 	}
 
-	err := createFolder(year)
+	htmlContent := webScraping.GetWebScrapedData(year, day, false)
+	readmeFileContent := webScraping.HtmlToReadme(htmlContent, year, day)+"\n\n## Part 2"
+
+	if dayInt < 10 {
+        day = "0" + day
+    }
+
+	err = createFolder(year)
 	if err != nil {
 		fmt.Println("Problem with creating year folder")
 		return
 	}
 	
+
 	err = createFolder(year+"\\day"+day)
 	if err != nil {
 		fmt.Println("Problem with creating day folder")
@@ -42,9 +57,9 @@ func main() {
 	
 	writeToFile(folderName, "input.txt", inputData)
 
-	createFile(folderName, "README.md")
+	writeToFile(folderName, "README.md", readmeFileContent)
 
-	goFileContent := "package main\n\nimport (\n    \"fmt\"\n)\n\nfunc main(){\n    part1()\n    part2()\n}\n\nfunc part1(){\n    ans := 0\n    fmt.Println(\"The answer to part 1 for day "+day+" is:\", ans)\n}\n\nfunc part2(){\n    ans := 0\n    fmt.Println(\"The answer to part 2 for day "+day+" is:\", ans)\n}"
+	goFileContent := "package main\n\nimport (\n    \"fmt\"\n\n\"github.com/DeanLogan/advent-of-code/libs\"\n)\n\nfunc main(){\n    part1()\n    part2()\n}\n\nfunc part1(){\n    ans := 0\n    fmt.Println(\"The answer to part 1 for day "+day+" is:\", ans)\n}\n\nfunc part2(){\n    ans := 0\n    fmt.Println(\"The answer to part 2 for day "+day+" is:\", ans)\n}"
 
 	writeToFile(folderName, "day"+day+".go", goFileContent)
 }
