@@ -2,7 +2,7 @@
 
 [Here](https://adventofcode.com/2024/day/1) is the link to the problem page on advent of code.
 
-The input data for the puzzle can be found in the text file input.txt
+The input data for the puzzle can be found in the text file input.txt.
 
 ## Part 1
 

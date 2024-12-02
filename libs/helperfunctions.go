@@ -111,6 +111,15 @@ func StrToIntSlice(str string, delimiter string) []int {
     return intSlice
 }
 
+// converts a slice of ints into a string with a delimiter
+func IntSliceToStr(slice []int, delimiter string) string {
+    strSlice := make([]string, len(slice))
+    for i, num := range slice {
+        strSlice[i] = strconv.Itoa(num)
+    }
+    return strings.Join(strSlice, delimiter)
+}
+
 // returns the index value of the maximum value in a slice
 func IndexOfMax(steps []int) int {
     maxIndex := 0
@@ -164,12 +173,25 @@ func Lcm(a, b int) int {
 	return a / Gcd(a, b) * b
 }
 
-// Inserts a string into a specific index of a []string
-func InsertIntoSlice(slice []string, index int, value string) []string {
-    slice = append(slice, "")
-    copy(slice[index+1:], slice[index:])
-    slice[index] = value
+// Inserts a value into a specific index of a slice
+func InsertIntoSlice[T any](slice []T, index int, value T) []T {
+    if index < 0 || index > len(slice) {
+        return slice 
+    }
+    slice = append(slice, value) 
+    copy(slice[index+1:], slice[index:]) 
+    slice[index] = value 
     return slice
+}
+
+// Removes the element at a given index from a slice
+func RemoveElementFromSlice[T any](slice []T, index int) []T {
+    if index < 0 || index >= len(slice) {
+        return slice 
+    }
+    newSlice := make([]T, len(slice))
+    copy(newSlice, slice)
+    return append(newSlice[:index], newSlice[index+1:]...)
 }
 
 // Absolute of any int value
