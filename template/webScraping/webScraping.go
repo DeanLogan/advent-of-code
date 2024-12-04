@@ -136,7 +136,7 @@ func HtmlToReadme(htmlContent string, year string, day string) string {
 		header := fmt.Sprintf("## %s\n\n", inner)
 		if !h2Found {
 			h2Found = true
-			linkText := fmt.Sprintf("[Here](\"https://adventofcode.com/%s/day/%s\") is the link to the problem page on advent of code.\n\nThe input data for the puzzle can be found in the text files input1.txt for part 1 and input2.txt for part 2\n\n# Part 1\n\n", year, day)
+			linkText := fmt.Sprintf("[Here](https://adventofcode.com/%s/day/%s) is the link to the problem page on advent of code.\n\nThe input data for the puzzle can be found in the text files input1.txt for part 1 and input2.txt for part 2\n\n# Part 1\n\n", year, day)
 			return header + linkText
 		}
 		return header

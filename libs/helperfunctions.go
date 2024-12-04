@@ -244,6 +244,42 @@ func TransposeStringSlice(slice []string) []string {
     return transposed
 }
 
+func Rotate45(slice []string, clockwise bool) []string {
+    if len(slice) == 0 {
+        return []string{}
+    }
+
+    maxLen := 0
+    for _, str := range slice {
+        if len(str) > maxLen {
+            maxLen = len(str)
+        }
+    }
+
+    resultLen := len(slice) + maxLen - 1
+    result := make([]string, resultLen)
+
+    for i := range result {
+        result[i] = ""
+    }
+
+    if clockwise {
+        for i, str := range slice {
+            for j, char := range str {
+                result[i+j] += string(char)
+            }
+        }
+    } else {
+        for i, str := range slice {
+            for j, char := range str {
+                result[len(slice)-1-i+j] += string(char)
+            }
+        }
+    }
+
+    return result
+}
+
 // perform a linear search on a string for a given character
 func SearchForCharInStr(str string, charToFind rune) bool {
     for _, char := range str {

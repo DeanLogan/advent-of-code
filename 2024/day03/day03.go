@@ -28,7 +28,7 @@ func checkChunk(chunk string) int {
     result := 0
     for i:=0; i<len(chunk)-7; i++ {
         // looks for the char m (comparing bytes)
-        if chunk[i] == 109 {
+        if chunk[i] == 'm' {
             result, i = checkForMul(chunk, i, result)
         }
     }
@@ -86,7 +86,7 @@ func checkChunkWithInstructions(chunk string, doMul bool) (int, bool) {
     result := 0
     for i:=0; i<len(chunk)-7; i++ {
         // looks for the char d (comparing bytes)
-        if chunk[i] == 100 {
+        if chunk[i] == 'd' {
             if chunk[i:i+7] == "don't()" {
                 doMul = false
                 i += 7
@@ -96,7 +96,7 @@ func checkChunkWithInstructions(chunk string, doMul bool) (int, bool) {
             }
         }
 
-        if doMul && chunk[i] == 109 {
+        if doMul && chunk[i] == 'm' {
             result, i = checkForMul(chunk, i, result)
         }
     }
