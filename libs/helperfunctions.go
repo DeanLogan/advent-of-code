@@ -26,8 +26,7 @@ func AllFileContent(filePath string) []byte {
 // It returns a slice of strings.
 func FileToSlice(filePath string, delimiter string) []string {
     fileContent := strings.ReplaceAll(string(AllFileContent(filePath)), "\r\n", "\n")
-    data := strings.ReplaceAll(string(fileContent), "\n\n", "\n")
-    return strings.Split(data, delimiter)
+    return strings.Split(fileContent, delimiter)
 }
 
 // GetScannerForFile opens a file and returns a bufio.Scanner for it.
@@ -86,14 +85,14 @@ func Max(a, b int) int {
 }
 
 // SearchForStrInSlice performs a linear search for a string in a slice of strings.
-// It returns true if the string is found and is not an empty string, false otherwise.
-func SearchForStrInSlice(str string, slice []string) bool {
-    for _, sliceStr := range slice {
+// It returns the index it was found at if the string is found and is not an empty string, -1 otherwise.
+func SearchForStrInSlice(str string, slice []string) int {
+    for i, sliceStr := range slice {
         if sliceStr == str && sliceStr != "" {
-            return true
+            return i
         }
     }
-    return false
+    return -1
 }
 
 // converts any string into a slice of ints, if a rune/character in the string cannot be converted then it is ignored for the final slice

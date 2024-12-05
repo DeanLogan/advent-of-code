@@ -32,7 +32,7 @@ func partOne() {
 		firstMatch := false
 		matches := 0
 		for _, numStr := range cardSlice {
-			if(libs.SearchForStrInSlice(numStr, winnningNumsSlice)){
+			if(libs.SearchForStrInSlice(numStr, winnningNumsSlice) != -1){
 				matches ++
 				if(!firstMatch){
 					points ++
