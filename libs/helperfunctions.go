@@ -1,6 +1,7 @@
 package libs
 
 import (
+    "fmt"
 	"bufio"
 	"log"
 	"os"
@@ -279,14 +280,29 @@ func Rotate45(slice []string, clockwise bool) []string {
     return result
 }
 
-// perform a linear search on a string for a given character
-func SearchForCharInStr(str string, charToFind rune) bool {
-    for _, char := range str {
+// perform a linear search on a string for a given character, return index of the char if found, -1 otherwise
+func SearchForCharInStr(str string, charToFind rune) int {
+    for i, char := range str {
         if char == charToFind {
-            return true
+            return i
         }
     }
-    return false
+    return -1
+}
+
+// replaces a character in a string at a given index and returns the new string.
+func ReplaceCharAtIndex(str string, index int, newChar rune) string {
+    if index < 0 || index >= len(str) {
+        return str 
+    }
+    return str[:index]+string(newChar)+str[index+1:]
+}
+
+// prints a slice line by line in the terminal for easier debugging
+func PrintSliceLineByLine[T any](slice []T) {
+    for _, element := range slice {
+        fmt.Println(element)
+    }
 }
 
 // abs for a float value

@@ -77,7 +77,7 @@ For some reason, the Elves also need to know the **middle page number** of each 
 97,61,**53**,29,13
 75,**29**,13
 ```
-These have middle page numbers of `61`, `53`, and `29` respectively. Adding these page numbers together gives `**143**`.
+These have middle page numbers of `61`, `53`, and `29` respectively. Adding these page numbers together gives `143`.
 
 Of course, you'll need to be careful: the actual list of **page ordering rules** is bigger and more complicated than the above example.
 
