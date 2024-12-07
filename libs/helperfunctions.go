@@ -52,7 +52,7 @@ func SplitAtChar(str string, char rune) (string, string) {
 }
 
 // SplitAtStr splits a string at the last occurrence of a given string.
-// It returns two strings: the part before the character and the part after the character.
+// It returns two strings: the part before the string and the part after the string.
 func SplitAtStr(str string, strToSplitAt string) (string, string) {
     index := strings.LastIndex(str, strToSplitAt)
     if index != -1 {
@@ -244,6 +244,7 @@ func TransposeStringSlice(slice []string) []string {
     return transposed
 }
 
+// Rotate45 rotates a string slice 45 degrees (diagnoly) clockwise or counter-clockwise based on the clockwise flag
 func Rotate45(slice []string, clockwise bool) []string {
     if len(slice) == 0 {
         return []string{}
@@ -280,7 +281,7 @@ func Rotate45(slice []string, clockwise bool) []string {
     return result
 }
 
-// perform a linear search on a string for a given character, return index of the char if found, -1 otherwise
+// performs a linear search on a string for a given character, return index of the char if found, -1 otherwise
 func SearchForCharInStr(str string, charToFind rune) int {
     for i, char := range str {
         if char == charToFind {
@@ -305,10 +306,36 @@ func PrintSliceLineByLine[T any](slice []T) {
     }
 }
 
-// abs for a float value
+// returns the abs for a float value
 func AbsFloat(x float64) float64 {
     if x < 0 {
         return -x
     }
     return x
+}
+
+// returns an int slice with the prime factors for a given number
+func PrimeFactors(num int) []int {
+    var factors []int
+    for i := 2; i*i <= num; i++ {
+        for num%i == 0 {
+            factors = append(factors, i)
+            num /= i
+        }
+    }
+    if num > 1 {
+        factors = append(factors, num)
+    }
+    return factors
+}
+
+// returns an int slice with all the prime factor pairs for a given number
+func PrimeFactorPairs(num int) [][2]int {
+    var factors [][2]int
+    for i := 1; i*i <= num; i++ {
+        if num%i == 0 {
+            factors = append(factors, [2]int{i, num / i})
+        }
+    }
+    return factors
 }
