@@ -23,6 +23,15 @@ func AllFileContent(filePath string) []byte {
     return content
 }
 
+// AllFileContent reads a file and returns its content as a byte slice.
+func AllFileContentAsString(filePath string) string {
+    content, err := os.ReadFile(filePath)
+	if err != nil {
+        log.Fatal(err)
+    }
+    return string(content)
+}
+
 // FileToSlice reads a file, replaces all "\r\n" with "\n", and splits the content by a given delimiter.
 // It returns a slice of strings.
 func FileToSlice(filePath string, delimiter string) []string {
@@ -338,4 +347,14 @@ func PrimeFactorPairs(num int) [][2]int {
         }
     }
     return factors
+}
+
+// swaps the char at index1 with the char at index2
+func SwapCharsInStr(str string, index1 int, index2 int) string {
+    if index1 < 0 || index1 >= len(str) || index2 < 0 || index2 >= len(str) {
+        return str
+    }
+    runes := []rune(str)
+    runes[index1], runes[index2] = runes[index2], runes[index1]
+    return string(runes)
 }
