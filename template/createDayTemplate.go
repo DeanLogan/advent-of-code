@@ -27,7 +27,7 @@ func main() {
         return
     }
 
-	inputData := webScraping.GetWebScrapedData(year, day, true)
+	inputData := strings.TrimSuffix(webScraping.GetWebScrapedData(year, day, true), "\n")
 	if inputData == "" {
 		fmt.Println("Data not available for selected year and date")
 		return
