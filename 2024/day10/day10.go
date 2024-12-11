@@ -106,5 +106,42 @@ func bfs(start Pos, topoMap [][]int) int {
 
 func part2() {
     ans := 0
+
+    topographicMapStr := libs.FileToSlice("2024/day10/input.txt", "\n")
+
+    topographicMap := [][]int{}
+    for _, line := range topographicMapStr {
+        topographicMap = append(topographicMap, libs.StrToIntSlice(line, ""))
+    }
+
+    trailHeads := findTrailHeadLocations(topographicMap)
+    for _, trailHead := range trailHeads {
+        ans += countDistinctPathsToNine(trailHead, topographicMap)
+    }
+
     fmt.Println("The answer to part 2 for day 10 is:", ans)
+}
+
+func countDistinctPathsToNine(start Pos, topoMap [][]int) int {
+    visited := make(map[Pos]bool)
+    return dfs(start, topoMap, visited)
+}
+
+func dfs(current Pos, topoMap [][]int, visited map[Pos]bool) int {
+    if topoMap[current.y][current.x] == 9 {
+        return 1
+    }
+
+    visited[current] = true
+    paths := 0
+
+    directions := fetchPossibleDirections(topoMap[current.y][current.x], current, topoMap)
+    for _, nextPos := range directions {
+        if !visited[nextPos] {
+            paths += dfs(nextPos, topoMap, visited)
+        }
+    }
+
+    visited[current] = false
+    return paths
 }
