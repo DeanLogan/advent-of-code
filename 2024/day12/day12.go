@@ -111,5 +111,57 @@ func contains(points []Pos, p Pos) bool {
 
 func part2(){
     ans := 0
+
+    lines := libs.FileToSlice("2024/day12/input.txt", "\n")
+    gardenPlotMap := createGardenPlotMap(lines)
+
+    regions := [][]Pos{}
+
+    for _, plotSlice := range gardenPlotMap {
+        regions = append(regions, findRegions(plotSlice)...)
+    }
+
+    for _, region := range regions {
+        ans += (calculateArea(region) * calculateFilteredPerimeter(region))
+    }
+
     fmt.Println("The answer to part 2 for day 12 is:", ans)
+}
+
+func calculateFilteredPerimeter(points []Pos) int {
+    pointSet := make(map[Pos]bool)
+    for _, p := range points {
+        pointSet[p] = true
+    }
+
+    perimeter := 0
+    directions := []Pos{{0, 1}, {1, 0}, {0, -1}, {-1, 0}}
+
+    edges := make(map[[2]Pos]bool)
+    for _, p := range points {
+        for _, d := range directions {
+            neighbor := Pos{p.x + d.x, p.y + d.y}
+            if !pointSet[neighbor] {
+                edges[[2]Pos{p, neighbor}] = true
+            }
+        }
+    }
+
+    filteredEdges := make(map[[2]Pos]bool)
+    for edge := range edges {
+        keep := true
+        for _, d := range []Pos{{1, 0}, {0, 1}} {
+            p1 := Pos{edge[0].x + d.x, edge[0].y + d.y}
+            p2 := Pos{edge[1].x + d.x, edge[1].y + d.y}
+            if edges[[2]Pos{p1, p2}] {
+                keep = false
+            }
+        }
+        if keep {
+            filteredEdges[edge] = true
+        }
+    }
+
+    perimeter = len(filteredEdges)
+    return perimeter
 }
