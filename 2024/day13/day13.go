@@ -39,7 +39,7 @@ func part1() {
         ans += (aPresses * 3) + bPresses
     }
 
-    fmt.Println("The answer to part 1 for day 13 is:", ans)
+    fmt.Println("🎄 The answer to part 1 for day 13 is:", ans, "🎄")
 }
 
 func minTokenToWinPrizeBfs(machine machineInfo, maxPresses int) (int, int) {
@@ -121,7 +121,7 @@ func part2() {
         ans += (aPresses * 3) + bPresses
     }
 
-    fmt.Println("The answer to part 2 for day 13 is:", ans)
+    fmt.Println("🎄 The answer to part 2 for day 13 is:", ans, "🎄")
 }
 
 func minTokenToWinPrizeLinearEquations(machine machineInfo, delta int) (int, int) {

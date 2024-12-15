@@ -30,7 +30,7 @@ func part1(){
         ans += libs.Abs(leftList[i] - rightList[i])
     }
 
-    fmt.Println("The answer to part 1 for day 1 is:", ans)
+    fmt.Println("🎄 The answer to part 1 for day 01 is:", ans, "🎄")
 }
 
 func getBothLists(lines []string) ([]int, []int, error) {
@@ -71,7 +71,7 @@ func part2(){
         ans += (leftList[i] * occrrenceMap[leftList[i]])
     }
 
-    fmt.Println("The answer to part 2 for day 1 is:", ans)
+    fmt.Println("🎄 The answer to part 2 for day 01 is:", ans, "🎄")
 }
 
 func createOccurrenceMap(slice []int) map[int]int {

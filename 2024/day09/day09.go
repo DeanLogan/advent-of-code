@@ -26,7 +26,7 @@ func part1() {
         }
     }
 
-    fmt.Println("The answer to part 1 for day 09 is:", ans)
+    fmt.Println("🎄 The answer to part 1 for day 09 is:", ans, "🎄")
 }
 
 func adjustDiskMap(diskMap []string) []string {
@@ -78,7 +78,7 @@ func part2() {
         }
     }
 
-    fmt.Println("The answer to part 2 for day 09 is:", ans)
+    fmt.Println("🎄 The answer to part 2 for day 09 is:", ans, "🎄")
 }
 
 func addSpace(diskMap []string, numOfChars int, chars string) []string {

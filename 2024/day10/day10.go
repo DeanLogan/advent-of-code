@@ -38,7 +38,7 @@ func part1() {
         ans += countPathsToNine(trailHead, topographicMap)
     }
 
-    fmt.Println("The answer to part 1 for day 10 is:", ans)
+    fmt.Println("🎄 The answer to part 1 for day 10 is:", ans, "🎄")
 }
 
 func findTrailHeadLocations(topoMap [][]int) []Pos {
@@ -119,7 +119,7 @@ func part2() {
         ans += countDistinctPathsToNine(trailHead, topographicMap)
     }
 
-    fmt.Println("The answer to part 2 for day 10 is:", ans)
+    fmt.Println("🎄 The answer to part 2 for day 10 is:", ans, "🎄")
 }
 
 func countDistinctPathsToNine(start Pos, topoMap [][]int) int {

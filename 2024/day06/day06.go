@@ -58,7 +58,7 @@ func part1(){
         }
     }
 
-    fmt.Println("The answer to part 1 for day 06 is:", ans)
+    fmt.Println("🎄 The answer to part 1 for day 06 is:", ans, "🎄")
 }
 
 func getGuard(mapSlice []string) Guard {
@@ -163,7 +163,7 @@ func part2() {
         }
     }
     
-    fmt.Println("The answer to part 2 for day 06 is:", ans)
+    fmt.Println("🎄 The answer to part 2 for day 06 is:", ans, "🎄")
 }
 
 func scanRowObstacles(mapSlice []string) [][]int {

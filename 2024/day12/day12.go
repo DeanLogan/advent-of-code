@@ -32,7 +32,7 @@ func part1(){
         ans += (calculateArea(region) * calculatePerimeter(region))
     }
 
-    fmt.Println("The answer to part 1 for day 12 is:", ans)
+    fmt.Println("🎄 The answer to part 1 for day 12 is:", ans, "🎄")
 }
 
 func calculateArea(points []Pos) int {
@@ -125,7 +125,7 @@ func part2(){
         ans += (calculateArea(region) * calculateFilteredPerimeter(region))
     }
 
-    fmt.Println("The answer to part 2 for day 12 is:", ans)
+    fmt.Println("🎄 The answer to part 2 for day 12 is:", ans, "🎄")
 }
 
 func calculateFilteredPerimeter(points []Pos) int {

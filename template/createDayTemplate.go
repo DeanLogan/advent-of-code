@@ -58,8 +58,8 @@ func main() {
 	writeToFile(folderName, "input.txt", inputData)
 
 	writeToFile(folderName, "README.md", readmeFileContent)
-
-	goFileContent := "package main\n\nimport (\n    \"fmt\"\n\n    \"github.com/DeanLogan/advent-of-code/libs\"\n)\n\nfunc main(){\n    part1()\n    part2()\n}\n\nfunc part1(){\n    ans := 0\n    fmt.Println(\"The answer to part 1 for day "+day+" is:\", ans)\n}\n\nfunc part2(){\n    ans := 0\n    fmt.Println(\"The answer to part 2 for day "+day+" is:\", ans)\n}"
+	
+	goFileContent := "package main\n\nimport (\n    \"fmt\"\n\n    \"github.com/DeanLogan/advent-of-code/libs\"\n)\n\nfunc main(){\n    part1()\n    part2()\n}\n\nfunc part1(){\n    ans := 0\n    fmt.Println(\"🎄 The answer to part 1 for day "+day+" is:\", ans, \"🎄\")\n}\n\nfunc part2(){\n    ans := 0\n    fmt.Println(\"🎄 The answer to part 2 for day "+day+" is:\", ans, \"🎄\")\n}"
 
 	writeToFile(folderName, "day"+day+".go", goFileContent)
 }

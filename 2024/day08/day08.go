@@ -35,7 +35,7 @@ func part1(){
 
     ans = len(antinodeLocations)
 
-    fmt.Println("The answer to part 1 for day 08 is:", ans)
+    fmt.Println("🎄 The answer to part 1 for day 08 is:", ans, "🎄")
 }
 
 func createAntennaMap(mapSlice []string) map[rune][]Pos {
@@ -87,7 +87,7 @@ func part2() {
         }
     }
 
-    fmt.Println("The answer to part 2 for day 08 is:", ans)
+    fmt.Println("🎄 The answer to part 2 for day 08 is:", ans, "🎄")
 }
 
 func findAntinodeLocations(antennas map[rune][]Pos, width int, height int) []Pos {

@@ -24,7 +24,7 @@ func part1(){
 
     ans = len(stones)
 
-    fmt.Println("The answer to part 1 for day 11 is:", ans)
+    fmt.Println("🎄 The answer to part 1 for day 11 is:", ans, "🎄")
 }
 
 func blink(stones []int) []int {
@@ -56,7 +56,7 @@ func part2(){
 
     ans = getNumStones(stones, 75)
 
-    fmt.Println("The answer to part 2 for day 11 is:", ans)
+    fmt.Println("🎄 The answer to part 2 for day 11 is:", ans, "🎄")
 }
 
 func getNumStones(stones []int, times int) int {

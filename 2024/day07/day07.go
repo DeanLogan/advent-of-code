@@ -27,7 +27,7 @@ func part1(){
         }
     }
 
-    fmt.Println("The answer to part 1 for day 07 is:", ans)
+    fmt.Println("🎄 The answer to part 1 for day 07 is:", ans, "🎄")
 }
 
 func validateLine(testValue int, equationList []int) bool {
@@ -66,7 +66,7 @@ func part2(){
         }
     }
 
-    fmt.Println("The answer to part 2 for day 07 is:", ans)
+    fmt.Println("🎄 The answer to part 2 for day 07 is:", ans, "🎄")
 }
 
 func validateLineWithConcat(testValue int, equationList []int) bool {

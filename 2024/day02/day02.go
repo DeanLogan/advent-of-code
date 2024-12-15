@@ -21,7 +21,7 @@ func part1(){
         }
     }
 
-    fmt.Println("The answer to part 1 for day 02 is:", ans)
+    fmt.Println("🎄 The answer to part 1 for day 02 is:", ans, "🎄")
 }
 
 func checkSafety(report string, problemDampener bool) bool {
@@ -57,5 +57,5 @@ func part2(){
         }
     }
 
-    fmt.Println("The answer to part 2 for day 02 is:", ans)
+    fmt.Println("🎄 The answer to part 2 for day 02 is:", ans, "🎄")
 }

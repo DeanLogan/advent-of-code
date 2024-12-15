@@ -21,7 +21,7 @@ func part1() {
         ans += checkChunk(chunk)
     }
 
-    fmt.Println("The answer to part 1 for day 03 is:", ans)
+    fmt.Println("🎄 The answer to part 1 for day 03 is:", ans, "🎄")
 }
 
 func checkChunk(chunk string) int {
@@ -79,7 +79,7 @@ func part2(){
         ans += chunkAns
     }
 
-    fmt.Println("The answer to part 2 for day 03 is:", ans)
+    fmt.Println("🎄 The answer to part 2 for day 03 is:", ans, "🎄")
 }
 
 func checkChunkWithInstructions(chunk string, doMul bool) (int, bool) {
