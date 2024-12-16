@@ -28,7 +28,7 @@ func partOne(){
 		}
 		ans = ans * winningWays
 	}
-	fmt.Println("The answer to part 1 for day 6 is:", ans)
+	fmt.Println("🎄 The answer to part 1 for day 06 is:", ans, "🎄")
 }
 
 func calcDist(buttonTime int, totalTime int) int{
@@ -58,5 +58,5 @@ func partTwo(){
 			ans ++
 		}
 	}
-	fmt.Println("The answer to part 2 for day 6 is:", ans)
+	fmt.Println("🎄 The answer to part 2 for day 06 is:", ans, "🎄")
 }

@@ -62,7 +62,7 @@ func part1(){
     onePair := []Game{}
     highCard := []Game{}
 
-    // Convert the .txt into a slice of games in the format of the Game struct
+    // convert the .txt into a slice of games in the format of the Game struct
     ans := 0
     lines := libs.FileToSlice("2023/day07/input.txt", "\n")
     games := []Game{}
@@ -109,8 +109,7 @@ func part1(){
         default:
             highCard = append(highCard, game)
         }
-
-        // games = append(games, game)
+    
     } 
 
     // order each of the types
@@ -122,8 +121,6 @@ func part1(){
     onePair = orderHands(onePair, charToValueMapPartOne)
     highCard = orderHands(highCard, charToValueMapPartOne)
 
-    // games = orderHands(games)
-
     games = append(games, highCard...)
     games = append(games, onePair...)
     games = append(games, twoPair...)
@@ -132,13 +129,11 @@ func part1(){
     games = append(games, fourOfAKinds...)
     games = append(games, fiveOfAKinds...)
 
-    //game.Hand, bidStr = libs.SplitAtChar(lines[i], ' ')
-
     for i := 0; i<len(games); i++{
         ans = ans + (games[i].Bid * (i+1))
     }
 
-    fmt.Println("The answer to part 1 for day 7 is:", ans)
+    fmt.Println("🎄 The answer to part 1 for day 07 is:", ans, "🎄")
 }
 
 func orderHands(games []Game, valueMap map[byte]int) []Game {
@@ -287,5 +282,5 @@ func part2(){
         ans = ans + (games[i].Bid * (i+1))
     }
 
-    fmt.Println("The answer to part 2 for day 7 is:", ans)
+    fmt.Println("🎄 The answer to part 2 for day 07 is:", ans, "🎄")
 }

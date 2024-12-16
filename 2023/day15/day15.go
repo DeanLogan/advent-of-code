@@ -19,7 +19,7 @@ func part1(){
     for _, value := range initializationSequence {
         ans += hashAlgorithm(value)
     }
-    fmt.Println("The answer to part 1 for day 15 is:", ans)
+    fmt.Println("🎄 The answer to part 1 for day 15 is:", ans, "🎄")
 }
 
 func hashAlgorithm(val string) int {
@@ -55,7 +55,7 @@ func part2(){
             }
         }
     }
-    fmt.Println("The answer to part 2 for day 15 is:", ans)
+    fmt.Println("🎄 The answer to part 2 for day 15 is:", ans, "🎄")
 }
 
 type Node struct {

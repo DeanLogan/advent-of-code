@@ -22,7 +22,7 @@ func part1() {
     g := graphFromGrid(data, src, dst, false)
     ans := longestPath(g, src, dst, 0, make(map[Point]struct{})) + 2
 
-    fmt.Println("The answer to part 1 for day 23 is:", ans)
+    fmt.Println("🎄 The answer to part 1 for day 23 is:", ans, "🎄")
 }
 
 type Point struct {
@@ -153,5 +153,5 @@ func part2() {
     g := graphFromGrid(data, src, dst, true)
     ans := longestPath(g, src, dst, 0, make(map[Point]struct{})) + 2
 
-    fmt.Println("The answer to part 2 for day 23 is:", ans)
+    fmt.Println("🎄 The answer to part 2 for day 23 is:", ans, "🎄")
 }

@@ -34,7 +34,7 @@ func part1(){
 
     ans = findZZZ(directions, "AAA", 0)
 
-    fmt.Println("The answer to part 1 for day 8 is:", ans)
+    fmt.Println("🎄 The answer to part 1 for day 08 is:", ans, "🎄")
 }
 
 func findZZZ(directions string, startingPoint string, stepsNum int) int {
@@ -83,7 +83,7 @@ func part2(){
 		ans = libs.Lcm(ans, results[i])
 	}
 
-    fmt.Println("The answer to part 2 for day 8 is:", ans)
+    fmt.Println("🎄 The answer to part 2 for day 08 is:", ans, "🎄")
 }
 
 // On reddit some people were frustracted (https://www.reddit.com/r/adventofcode/comments/18dh4p8/2023_day_8_part_2_im_a_bit_frustrated/) that part 2 could only 
@@ -115,7 +115,7 @@ func part2AltWay(){
 
     ans := findEndForAllStartingPoints(directionsSlice, startingPoints, startingSteps)
 
-    fmt.Println("The answer to part 2 for day 8 is:", ans)
+    fmt.Println("🎄 The answer to part 2 for day 08 is:", ans, "🎄")
 }
 
 func findEndForAllStartingPoints(directions []string, startingPoints []string, steps []int) int {

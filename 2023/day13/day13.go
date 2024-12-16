@@ -24,7 +24,7 @@ func part1(){
             ans += (v + 1) * 100
         }
     }
-    fmt.Println("The answer to part 1 for day 13 is:", ans)
+    fmt.Println("🎄 The answer to part 1 for day 13 is:", ans, "🎄")
 }
 
 func findHorizontalSymmetry(pattern string) (int, bool) {
@@ -58,7 +58,7 @@ func part2(){
             ans += (v + 1) * 100
         }
     }
-    fmt.Println("The answer to part 2 for day 13 is:", ans)
+    fmt.Println("🎄 The answer to part 2 for day 13 is:", ans, "🎄")
 }
 
 func findHorizontalSymmetryWithSmudges(pattern string, smudges int) (int, bool) {

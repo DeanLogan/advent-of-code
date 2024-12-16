@@ -52,7 +52,7 @@ func part1() {
 	}
 
 	ans := intersectCount
-	fmt.Println("The answer to part 1 for day 24 is:", ans)
+	fmt.Println("🎄 The answer to part 1 for day 24 is:", ans, "🎄")
 }
 
 func hailstonesIntersect(a, b Hailstone) (Vector2, bool) {
@@ -145,7 +145,7 @@ func part2() {
         }
     }
     
-    fmt.Println("The answer to part 2 for day 24 is:", ans)
+    fmt.Println("🎄 The answer to part 2 for day 24 is:", ans, "🎄")
 }
 
 func findMatchingVel(dvel, pv int) []int {

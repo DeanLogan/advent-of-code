@@ -9,7 +9,7 @@ import (
 
 func main(){
     part1()
-    fmt.Println("There is no part 2, all challanges have been completed :)")
+    fmt.Println("There is no part 2, all challanges have been completed :) 🎄🎅🐧❄️⛄")
 }
 
 func part1() {
@@ -30,7 +30,7 @@ func part1() {
 	countB := len(nodes) - countA
 
 	ans := countA * countB
-	fmt.Println("The answer to part 1 for day 25 is:", ans)
+	fmt.Println("🎄 The answer to part 1 for day 25 is:", ans, "🎄")
 }
 
 type Edge struct {

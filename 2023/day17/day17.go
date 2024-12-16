@@ -14,10 +14,13 @@ func main(){
 }
 
 func part1() {
+	ans := 0
+
     lines := libs.FileToSlice("2023/day17/input.txt", "\n")
     graph := createMatrix(lines) 
 
-    fmt.Println("The answer to part 1 for day 17 is:", dijktras(graph, 0, 3))
+	ans = dijktras(graph, 0, 3)
+	fmt.Println("🎄 The answer to part 1 for day 17 is:", ans, "🎄")
 }
 
 func createMatrix(input []string) [][]int {
@@ -189,8 +192,11 @@ func getNodesFromDirection(dirs []direction, startNode queueNode, matrix [][]int
 }
 
 func part2() {
+	ans := 0
+
     lines := libs.FileToSlice("2023/day17/input.txt", "\n")
     graph := createMatrix(lines) 
 
-    fmt.Println("The answer to part 1 for day 17 is:", dijktras(graph, 4, 10))
+    ans = dijktras(graph, 4, 10)
+	fmt.Println("🎄 The answer to part 2 for day 17 is:", ans, "🎄")
 }

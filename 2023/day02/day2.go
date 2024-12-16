@@ -38,7 +38,7 @@ func partOne(){
 		}
 	}
 
-	fmt.Println("The answer to part 1 for day 2 is: ", ans)
+	fmt.Println("🎄 The answer to part 1 for day 02 is:", ans, "🎄")
 }
 
 func isGameValid(line string) bool {
@@ -92,7 +92,7 @@ func partTwo(){
 		ans = ans + (bag["red"] * bag["green"] * bag["blue"])
 	}
 
-	fmt.Println("The answer to part 2 for day 2 is: ", ans)
+	fmt.Println("🎄 The answer to part 2 for day 02 is:", ans, "🎄")
 }
 
 func getMinNumOfCubesForValidGame(line string, bag map[string]int) map[string]int {

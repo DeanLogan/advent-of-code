@@ -24,7 +24,7 @@ func part1(){
     digPlan := libs.FileToSlice("2023/day18/input.txt", "\n")
     polygon:= createPolygon(digPlan)
     ans = perimeter(polygon) / 2 + shoelace(polygon) + 1
-    fmt.Println("The answer to part 1 for day 18 is:", ans)
+    fmt.Println("🎄 The answer to part 1 for day 18 is:", ans, "🎄")
 }
 
 func createPolygon(digPlan []string) []Point {
@@ -84,7 +84,7 @@ func part2(){
     digPlan := libs.FileToSlice("2023/day18/input.txt", "\n")
     polygon := createPolygonFromHexCodes(digPlan)
     ans = perimeter(polygon) / 2 + shoelace(polygon) + 1
-    fmt.Println("The answer to part 2 for day 18 is:", ans)
+    fmt.Println("🎄 The answer to part 2 for day 18 is:", ans, "🎄")
 }
 
 func createPolygonFromHexCodes(digPlan []string) []Point {

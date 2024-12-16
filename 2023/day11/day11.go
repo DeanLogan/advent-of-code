@@ -20,7 +20,7 @@ func part1(){
     for i := 0; i<len(galaxies); i++ {
         ans += calcDistToAllOtherGalaxiesPartOne(galaxies[i], galaxies)
     }
-    fmt.Println("The answer to part 1 for day 10 is:", ans / 2)
+    fmt.Println("🎄 The answer to part 1 for day 11 is:", ans / 2, "🎄")
 }
 
 // prints what the slice would look like if it was in a .txt
@@ -94,7 +94,7 @@ func part2(){
     for i := 0; i<len(galaxies); i++ {
         ans += calcDistToAllOtherGalaxiesPartTwo(galaxies[i], galaxies, rowsExpanding, colsExpanding)
     }
-    fmt.Println("The answer to part 2 for day 11 is:", ans / 2)
+    fmt.Println("🎄 The answer to part 2 for day 1 is:", ans / 2, "🎄")
 }
 
 func expandUniversePartTwo(universe []string) (map[int]bool, map[int]bool) {

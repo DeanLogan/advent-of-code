@@ -24,7 +24,7 @@ func part1(){
         queue, moduleMap = pulses(queue, moduleMap)
     }
     ans = lowPulse * highPulse
-    fmt.Println("The answer to part 1 for day 20 is:", ans)
+    fmt.Println("🎄 The answer to part 1 for day 20 is:", ans, "🎄")
 }
 var lowPulse = 0
 var highPulse = 0
@@ -142,7 +142,7 @@ func part2() {
                 cycles = append(cycles, v2[0])
             }
             ans = lcm(cycles)
-            fmt.Println("The answer to part 2 for day 20 is:", ans)
+            fmt.Println("🎄 The answer to part 2 for day 20 is:", ans, "🎄")
             return
         }
         if i > 0 && allFalse(moduleMap) {
@@ -151,7 +151,7 @@ func part2() {
         queue.Enqueue(moduleMap["roadcaster"])
         queue, moduleMap, _ = pulses2(queue, moduleMap, i, seens)
     }
-    fmt.Println("The answer to part 2 for day 20 is:", ans)
+    fmt.Println("🎄 The answer to part 2 for day 20 is:", ans, "🎄")
 }
 
 func pulses2(queue Queue, moduleMap map[string]Module, i int, seens map[string][]int) (Queue, map[string]Module, bool) {

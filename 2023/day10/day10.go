@@ -16,7 +16,7 @@ func part1(){
     lineOn, posAt := findS(lines)
     startLine, startPos, direction := checkCharSurrondings(lineOn, posAt, lines)
     ans := goRoundMaze(startLine, startPos, lines, direction, 1) / 2 // divide by 2 to get the number of steps furthest away in the loop
-    fmt.Println("The answer to part 1 for day 10 is:", ans)
+    fmt.Println("🎄 The answer to part 1 for day 10 is:", ans, "🎄")
 }
 
 func findS(data []string) (int, int) {
@@ -108,7 +108,7 @@ func part2(){
     mazePoints := []Point{{posAt, lineOn}, {startPos, startLine}}
     mazePoints = mazeToSlice(startLine, startPos, lines, direction, mazePoints)
     ans := countSurroundedPoints(mazePoints, len(lines[0])-1, len(lines)-1)
-    fmt.Println("The answer to part 2 for day 10 is:", ans)
+    fmt.Println("🎄 The answer to part 2 for day 10 is:", ans, "🎄")
 }
 
 // adds all of the pipes into a 2d slice, the lineOn and posAt act like points on a graph (the graph being the maze/pipes)

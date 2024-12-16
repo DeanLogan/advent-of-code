@@ -19,7 +19,7 @@ func part1(){
         historyOfValue := [][]int{libs.StrToIntSlice(line, " ")}
         ans += calcForwardExtrapolated(historyOfValue)
     }
-    fmt.Println("The answer to part 1 for day 9 is:", ans)
+    fmt.Println("🎄 The answer to part 1 for day 09 is:", ans, "🎄")
 }
 
 func calcForwardExtrapolated(slices [][]int) int {
@@ -58,7 +58,7 @@ func part2(){
         historyOfValue := [][]int{libs.StrToIntSlice(line, " ")}
         ans += calcBackwardExtrapolated(historyOfValue)
     }
-    fmt.Println("The answer to part 2 for day 9 is:", ans)
+    fmt.Println("🎄 The answer to part 2 for day 09 is:", ans, "🎄")
 }
 
 func calcBackwardExtrapolated(slices [][]int) int {

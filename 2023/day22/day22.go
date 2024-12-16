@@ -138,7 +138,7 @@ func part1() {
         }
     }
 
-    fmt.Println("The answer to part 2 for day 22 is:", ans)
+    fmt.Println("🎄 The answer to part 1 for day 22 is:", ans, "🎄")
 }
 
 func part2() {
@@ -151,5 +151,5 @@ func part2() {
         ans += wouldFall - 1
     }
 
-    fmt.Println("The answer to part 2 for day 22 is:", ans)
+    fmt.Println("🎄 The answer to part 2 for day 22 is:", ans, "🎄")
 }

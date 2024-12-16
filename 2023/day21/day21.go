@@ -15,8 +15,12 @@ func main(){
 }
 
 func part1(){
+    ans := 0
+
     lines := libs.FileToSlice("2023/day21/input.txt", "\n")
-    fmt.Println("The answer to part 1 for day 21 is:", floodFill(lines, 64))
+    ans = floodFill(lines, 64)
+
+    fmt.Println("🎄 The answer to part 1 for day 21 is:", ans, "🎄")
 }
 
 type Point struct {
@@ -99,5 +103,5 @@ func part2(){
     n := 202300
 
     ans := int64(math.Round(x.At(0, 0)*float64(n*n)+x.At(1, 0)*float64(n)+x.At(2, 0)))
-    fmt.Println("The answer to part 2 for day 21 is:", ans)
+    fmt.Println("🎄 The answer to part 2 for day 21 is:", ans, "🎄")
 }

@@ -20,6 +20,8 @@ type GridPoint struct {
 }
 
 func part1() {
+    ans := 0
+
     graph := libs.FileToSlice("2023/day16/input.txt", "\n")
     beamPaths := []BeamPath{{0, -1, 0, 1}}
     visitedPaths := make(map[BeamPath]bool)
@@ -33,7 +35,8 @@ func part1() {
         beamPaths = append(beamPaths, newPaths...)
     }
 
-    fmt.Println("The answer to part 1 for day 16 is:", len(energizedTiles))
+    ans = len(energizedTiles)
+    fmt.Println("🎄 The answer to part 1 for day 16 is:", ans, "🎄")
 }
 
 func processBeamPath(path BeamPath, contraptionLayout []string, visitedPaths map[BeamPath]bool, energizedTiles map[GridPoint]bool) []BeamPath {
@@ -98,7 +101,7 @@ func part2(){
         ans = libs.Max(ans, findOptimalBeamConfiguration(BeamPath{-1, c, 1, 0}, graph))
         ans = libs.Max(ans, findOptimalBeamConfiguration(BeamPath{len(graph), c, -1, 0}, graph))
     }
-    fmt.Println("The answer to part 2 for day 16 is:", ans)
+    fmt.Println("🎄 The answer to part 2 for day 16 is:", ans, "🎄")
 }
 
 func findOptimalBeamConfiguration(path BeamPath, contraptionLayout []string) int {

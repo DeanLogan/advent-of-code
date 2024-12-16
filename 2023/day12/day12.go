@@ -19,7 +19,7 @@ func part1(){
         springConditionRecord, contiguousDamagedSprings := libs.SplitAtStr(spring, " ")
         ans += calcArrangementsPartOne(springConditionRecord, libs.StrToIntSlice(contiguousDamagedSprings, ","))
     }
-    fmt.Println("The answer to part 1 for day 12 is:", ans)
+    fmt.Println("🎄 The answer to part 1 for day 12 is:", ans, "🎄")
 }
 
 func calcArrangementsPartOne(springConditionRecord string, contiguousDamagedSprings []int) int {
@@ -62,7 +62,7 @@ func part2(){
 
         ans += calcArrangementsPartTwo(springConditionRecord, libs.StrToIntSlice(contiguousDamagedSprings, ","))
     }
-    fmt.Println("The answer to part 2 for day 12 is:", ans)
+    fmt.Println("🎄 The answer to part 2 for day 12 is:", ans, "🎄")
 }
 
 func unfoldSprings(springs string, arrangements string) (string, string) {

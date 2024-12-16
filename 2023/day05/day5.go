@@ -36,7 +36,7 @@ func partOne() {
 			ans = checkFor
 		}
 	} 
-	fmt.Println("The answer to part 1 for day 5 is: ", ans)
+	fmt.Println("🎄 The answer to part 1 for day 05 is:", ans, "🎄")
 }
 
 func calcMapping(mapping string, checkFor int) int {
@@ -84,7 +84,7 @@ func partTwo() {
 
 		for s := 0; s < len(seeds); s += 2 {
 			if x >= seeds[s] && x <= seeds[s]+seeds[s+1] {
-				fmt.Println("The answer to part 2 for day 5 is: ",loc)
+				fmt.Println("🎄 The answer to part 2 for day 05 is:", loc, "🎄")
 				return
 			}
 		}

@@ -24,7 +24,7 @@ func part1(){
             }
         }
     }
-    fmt.Println("The answer to part 1 for day 14 is:", ans)
+    fmt.Println("🎄 The answer to part 1 for day 14 is:", ans, "🎄")
 }
 
 func rollLine(line string) string {
@@ -70,7 +70,7 @@ func part2(){
 		}
 	}
 
-    fmt.Println("The answer to part 2 for day 14 is:", ans)
+    fmt.Println("🎄 The answer to part 2 for day 14 is:", ans, "🎄")
 }
 
 const (

@@ -26,7 +26,7 @@ func partOne(){
 		log.Fatal(err, "Failed to compile regex")
 		return
 	}
-	total := 0
+	ans := 0
     for scanner.Scan() {
 		processedString := reg.ReplaceAllString(scanner.Text(), "")
 		num, err := strconv.Atoi(string(processedString[0]) + string(processedString[len(processedString)-1]))
@@ -34,9 +34,9 @@ func partOne(){
 			log.Fatal(err, "Failed to convert string to int")
 			return
 		}
-		total += num
+		ans += num
     }
-	fmt.Println("The answer to part 1 for day 1 is: ", total)
+	fmt.Println("🎄 The answer to part 1 for day 01 is:", ans, "🎄")
 }
 
 func partTwo(){
@@ -53,7 +53,7 @@ func partTwo(){
 		return
 	}
 
-	total := 0
+	ans := 0
     for scanner.Scan() {
 		text := replaceWordWithDigit(scanner.Text())
 		processedString := reg.ReplaceAllString(text, "")
@@ -62,9 +62,9 @@ func partTwo(){
 			log.Fatal(err, "Failed to convert string to int")
 			return
 		}
-		total += num
+		ans += num
     }
-	fmt.Println("The answer to part 2 for day 1 is: ", total)
+	fmt.Println("🎄 The answer to part 2 for day 01 is:", ans, "🎄")
 }
 
 func replaceWordWithDigit(text string) string {

@@ -45,7 +45,7 @@ func partOne() {
 		ans += points
 	}
 
-	fmt.Println("The answer to part 1 for day 4 is: ", ans)
+	fmt.Println("🎄 The answer to part 1 for day 04 is:", ans, "🎄")
 }
 
 func partTwo() {
@@ -69,7 +69,7 @@ func partTwo() {
 	for _, v := range cards {
 		ans += v
 	}
-	fmt.Println("The answer to part 2 for day 4 is: ", ans)
+	fmt.Println("🎄 The answer to part 2 for day 04 is:", ans, "🎄")
 }
 	
 func intersectionSize(x, y []string) int {

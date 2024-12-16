@@ -43,7 +43,7 @@ func partOne(){
 		ans += num
 	}
 
-	fmt.Println("The answer to part 1 for day 3 is: ", ans)
+	fmt.Println("🎄 The answer to part 1 for day 03 is:", ans, "🎄")
 }
 
 func partTwo(){
@@ -67,7 +67,7 @@ func partTwo(){
 		ans = findMultiplesAndAdd(charactersFound, ans, currentLine, dataSlice[i-1], dataSlice[i+1])
 	}
 
-	fmt.Println("The answer to part 1 for day 3 is: ", ans)
+	fmt.Println("🎄 The answer to part 2 for day 03 is:", ans, "🎄")
 }
 
 // if a character only has two numbers, multiply them and add to ans
