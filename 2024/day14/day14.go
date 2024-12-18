@@ -82,5 +82,28 @@ func getQuadrant(robotPos Pos, quadLines Pos) int {
 
 func part2(){
     ans := 0
+
+    robotsStr := libs.FileToSlice("2024/day14/input.txt", "\n")
+    quadLines := Pos{roomWidth / 2, roomHeight / 2}
+    
+    minSafety := 215987200
+    for i := 1; i < 10000; i++{
+        var updatedRobots []Robot
+        robotsInQuads := make(map[int]int)
+        for j, robotStr := range robotsStr {
+            robot := strToRobot(robotStr)
+            updatedRobot := moveNumOfSecs(robot, i, roomWidth, roomHeight)
+            updatedRobot.velocity = Pos{0, 0} // Set velocity to 0
+            updatedRobots = append(updatedRobots, updatedRobot)
+            quadrant := getQuadrant(updatedRobots[j].currentPos, quadLines)
+            robotsInQuads[quadrant] += 1
+        }
+        count := robotsInQuads[1] * robotsInQuads[2] * robotsInQuads[3] * robotsInQuads[4]
+        if count < minSafety {
+            minSafety = count
+            ans = i
+        }
+    }
+
     fmt.Println("🎄 The answer to part 2 for day 14 is:", ans, "🎄")
 }
