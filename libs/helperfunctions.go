@@ -29,7 +29,7 @@ func AllFileContentAsString(filePath string) string {
 	if err != nil {
         log.Fatal(err)
     }
-    return string(content)
+    return strings.ReplaceAll(string(content), "\r\n", "\n")
 }
 
 // FileToSlice reads a file, replaces all "\r\n" with "\n", and splits the content by a given delimiter.
