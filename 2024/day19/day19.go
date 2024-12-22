@@ -48,7 +48,35 @@ func createTowelMap(towelSlice []string) map[string]bool {
     return towelMap
 }
 
-func part2(){
+func part2() {
     ans := 0
+
+    file := libs.FileToSlice("2024/day19/input.txt", "\n\n")
+    towels := strings.Split(file[0], ", ")
+    patterns := strings.Split(file[1], "\n")
+
+    memo := make(map[string]int)
+    for _, pattern := range patterns {
+        ans += countOfAllPossiblePatterns(pattern, towels, memo)
+    }
+
     fmt.Println("🎄 The answer to part 2 for day 19 is:", ans, "🎄")
+}
+
+func countOfAllPossiblePatterns(pattern string, towels []string, memo map[string]int) int {
+    if val, found := memo[pattern]; found {
+        return val
+    }
+    poss := 0
+    for _, towel := range towels {
+        if len(pattern) >= len(towel) && pattern[:len(towel)] == towel {
+            if len(pattern) == len(towel) {
+                poss += 1
+            } else {
+                poss += countOfAllPossiblePatterns(pattern[len(towel):], towels, memo)
+            }
+        }
+    }
+    memo[pattern] = poss
+    return poss
 }
