@@ -28,44 +28,6 @@ func part1(){
     fmt.Println("🎄 The answer to part 1 for day 18 is:", ans, "🎄")
 }
 
-func printMap(mapStr []string) {
-    for _, line := range mapStr {
-        fmt.Println(line)
-    }
-}
-
-func createMap(end int) []string {
-    mapStr := make([]string,end)
-    newLine := ""
-    for i:=0; i<end; i++ {
-        newLine += "."
-    }
-    for i := range mapStr {
-        mapStr[i] = newLine
-    }
-    return mapStr
-}
-
-func populateMap(mapStr []string, posList interface{}, replacementChar rune) []string {
-    switch v := posList.(type) {
-    case []Pos:
-        for _, pos := range v {
-            if pos.y >= 0 && pos.y < len(mapStr) && pos.x >= 0 && pos.x < len(mapStr[pos.y]) {
-                mapStr[pos.y] = libs.ReplaceCharAtIndex(mapStr[pos.y], pos.x, replacementChar)
-            }
-        }
-    case map[Pos]bool:
-        for pos := range v {
-            if pos.y >= 0 && pos.y < len(mapStr) && pos.x >= 0 && pos.x < len(mapStr[pos.y]) {
-                mapStr[pos.y] = libs.ReplaceCharAtIndex(mapStr[pos.y], pos.x, replacementChar)
-            }
-        }
-    default:
-        fmt.Println("Unsupported type")
-    }
-    return mapStr
-}
-
 func linesToByteMap(lines []string, stopAt int) map[Pos]bool {
     byteMap := make(map[Pos]bool)
     for i:=0; i<stopAt; i++ {
@@ -102,10 +64,55 @@ func shortestPath(start, end Pos, byteMap map[Pos]bool) int {
         }
         steps++
     }
-    return -1 // return -1 if there is no path
+    return -1 
 }
 
-func part2(){
-    ans := 0
+func part2() {
+    lines := libs.FileToSlice("2024/day18/input.txt", "\n")
+    start := Pos{0,0}
+    end := Pos{70,70}
+
+    // modified binary search
+    left, right := 0, len(lines)-1
+    lastPossible := -1
+
+    for left <= right {
+        mid := (left + right) / 2
+        byteMap := linesToByteMap(lines, mid)
+        if isPathPossible(start, end, byteMap) {
+            lastPossible = mid
+            left = mid + 1
+        } else {
+            right = mid - 1
+        }
+    }
+
+    ans := lines[lastPossible]
+
     fmt.Println("🎄 The answer to part 2 for day 18 is:", ans, "🎄")
+}
+
+func isPathPossible(start, end Pos, byteMap map[Pos]bool) bool {
+    directions := []Pos{{0, 1}, {1, 0}, {0, -1}, {-1, 0}}
+    visited := make(map[Pos]bool)
+    queue := list.New()
+    queue.PushBack(start)
+    visited[start] = true
+
+    for queue.Len() > 0 {
+        current := queue.Remove(queue.Front()).(Pos)
+        if current == end {
+            return true
+        }
+        for _, dir := range directions {
+            next := Pos{current.x + dir.x, current.y + dir.y}
+            if next.x >= start.x && next.x <= end.x && next.y >= start.y && next.y <= end.y {
+                if !byteMap[next] && !visited[next] {
+                    queue.PushBack(next)
+                    visited[next] = true
+                }
+            }
+        }
+    }
+    return false
 }
