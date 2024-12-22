@@ -26,14 +26,15 @@ func part1(){
     program := getProgram(file[1])
     opcodes, operands := programToOpcodesAndOperands(program)
 
-    _, _, ans := runProgram(opcodes, operands, reg, 0, "")
+    _, _, out := runProgram(opcodes, operands, reg, 0, []int{})
+    ans := libs.IntSliceToStr(out, ",")
 
     fmt.Println("🎄 The answer to part 1 for day 17 is:", ans, "🎄")
 }
 
-func runProgram(opcodes []int, operands []int, reg register, ip int, out string) (register, int, string) {
+func runProgram(opcodes []int, operands []int, reg register, ip int, out []int) (register, int, []int) {
     if ip >= len(opcodes) {
-        return reg, ip, out[:len(out)-1]
+        return reg, ip, out
     }
 
     switch opcodes[ip] {
@@ -51,7 +52,7 @@ func runProgram(opcodes []int, operands []int, reg register, ip int, out string)
     case 4: // bxc
         reg.B = reg.B ^ reg.C
     case 5: // out
-        out += strconv.Itoa(comboOperand(operands[ip], reg) % 8) + ","
+        out = append(out, (comboOperand(operands[ip], reg) % 8))
     case 6: // bdv
         reg.B = reg.A / int(math.Pow(2, float64(comboOperand(operands[ip], reg))))
     case 7: // cdv
@@ -110,5 +111,28 @@ func getRegister(regStr string) register {
 
 func part2(){
     ans := 0
+
+    file := libs.FileToSlice("2024/day17/input.txt", "\n\n")
+    program := getProgram(file[1])
+    opcodes, operands := programToOpcodesAndOperands(program)
+
+    ans = expect(opcodes, operands, program, 0)
+
     fmt.Println("🎄 The answer to part 2 for day 17 is:", ans, "🎄")
+}
+
+func expect(opcodes []int, operands, out []int, prevA int) int {
+    if len(out) == 0 {
+        return prevA
+    }
+    for a := 0; a < (1 << 10); a++ {
+		_, _, result := runProgram(opcodes, operands, register{a,0,0}, 0, []int{})
+        if a>>3 == prevA&127 && result[0] == out[len(out)-1] {
+            ret := expect(opcodes, operands, out[:len(out)-1], (prevA<<3)|(a%8))
+            if ret != -1 {
+                return ret
+            }
+        }
+    }
+    return -1
 }
