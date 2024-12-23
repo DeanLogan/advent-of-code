@@ -1,10 +1,10 @@
-## Day 15: Warehouse Woes
+# Day 15: Warehouse Woes
 
 [Here](https://adventofcode.com/2024/day/15) is the link to the problem page on advent of code.
 
 The input data for the puzzle can be found in the text file input.txt.
 
-# Part 1
+## Part 1
 
 You appear back inside your own mini submarine! Each Historian drives their mini submarine in a different direction; maybe the Chief has his own submarine down here somewhere as well?
 

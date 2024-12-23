@@ -1,10 +1,10 @@
-## Day 20: Race Condition
+# Day 20: Race Condition
 
 [Here](https://adventofcode.com/2024/day/20) is the link to the problem page on advent of code.
 
 The input data for the puzzle can be found in the text file input.txt.
 
-# Part 1
+## Part 1
 
 The Historians are quite pixelated again. This time, a massive, black building looms over you - you're [right outside](https://adventofcode.com/2017/day/24) the CPU!
 

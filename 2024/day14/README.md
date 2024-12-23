@@ -1,10 +1,10 @@
-## Day 14: Restroom Redoubt
+# Day 14: Restroom Redoubt
 
 [Here](https://adventofcode.com/2024/day/14) is the link to the problem page on advent of code.
 
 The input data for the puzzle can be found in the text file input.txt.
 
-# Part 1
+## Part 1
 
 One of The Historians needs to use the bathroom; fortunately, you know there's a bathroom near an unvisited location on their list, and so you're all quickly teleported directly to the lobby of Easter Bunny Headquarters.
 

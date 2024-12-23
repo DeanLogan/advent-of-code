@@ -1,10 +1,10 @@
-## Day 8: Resonant Collinearity
+# Day 8: Resonant Collinearity
 
 [Here](https://adventofcode.com/2024/day/8) is the link to the problem page on advent of code.
 
 The input data for the puzzle can be found in the text file input.txt.
 
-# Part 1
+## Part 1
 
 You find yourselves on the [roof](https://adventofcode.com/2016/day/25) of a top-secret Easter Bunny installation.
 

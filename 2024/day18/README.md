@@ -1,10 +1,10 @@
-## Day 18: RAM Run
+# Day 18: RAM Run
 
 [Here](https://adventofcode.com/2024/day/18) is the link to the problem page on advent of code.
 
 The input data for the puzzle can be found in the text file input.txt.
 
-# Part 1
+## Part 1
 
 You and The Historians look a lot more pixelated than you remember. You're [inside a computer](https://adventofcode.com/2017/day/2) at the North Pole!
 

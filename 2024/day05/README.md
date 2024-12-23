@@ -1,10 +1,10 @@
-## Day 5: Print Queue
+# Day 5: Print Queue
 
 [Here](https://adventofcode.com/2024/day/5) is the link to the problem page on advent of code.
 
 The input data for the puzzle can be found in the text file input.txt.
 
-# Part 1
+## Part 1
 
 Satisfied with their search on Ceres, the squadron of scholars suggests subsequently scanning the stationery stacks of sub-basement 17.
 

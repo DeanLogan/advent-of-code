@@ -1,10 +1,10 @@
-## Day 11: Plutonian Pebbles
+# Day 11: Plutonian Pebbles
 
 [Here](https://adventofcode.com/2024/day/11) is the link to the problem page on advent of code.
 
 The input data for the puzzle can be found in the text file input.txt.
 
-# Part 1
+## Part 1
 
 The ancient civilization on [Pluto](https://adventofcode.com/2019/day/20) was known for its ability to manipulate spacetime, and while The Historians explore their infinite corridors, you've noticed a strange set of physics-defying stones.
 

@@ -1,10 +1,10 @@
-## Day 10: Hoof It
+# Day 10: Hoof It
 
 [Here](https://adventofcode.com/2024/day/10) is the link to the problem page on advent of code.
 
 The input data for the puzzle can be found in the text file input.txt.
 
-# Part 1
+## Part 1
 
 You all arrive at a [Lava Production Facility](https://adventofcode.com/2023/day/15) on a floating island in the sky. As the others begin to search the massive industrial complex, you feel a small nose boop your leg and look down to discover a reindeer wearing a hard hat.
 

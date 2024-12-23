@@ -1,10 +1,10 @@
-## Day 13: Claw Contraption
+# Day 13: Claw Contraption
 
 [Here](https://adventofcode.com/2024/day/13) is the link to the problem page on advent of code.
 
 The input data for the puzzle can be found in the text file input.txt.
 
-# Part 1
+## Part 1
 
 Next up: the [lobby](https://adventofcode.com/2020/day/24) of a resort on a tropical island. The Historians take a moment to admire the hexagonal floor tiles before spreading out.
 

@@ -1,10 +1,10 @@
-## Day 7: Bridge Repair
+# Day 7: Bridge Repair
 
 [Here](https://adventofcode.com/2024/day/7) is the link to the problem page on advent of code.
 
 The input data for the puzzle can be found in the text files input1.txt for part 1 and input2.txt for part 2
 
-# Part 1
+## Part 1
 
 The Historians take you to a familiar [rope bridge](https://adventofcode.com/2022/day/9) over a river in the middle of a jungle. The Chief isn't on this side of the bridge, though; maybe he's on the other side?
 

@@ -1,10 +1,10 @@
-## Day 4: Ceres Search
+# Day 4: Ceres Search
 
 [Here](https://adventofcode.com/2024/day/4) is the link to the problem page on advent of code.
 
 The input data for the puzzle can be found in the text file input.txt.
 
-# Part 1
+## Part 1
 
 "Looks like the Chief's not here. Next!" One of The Historians pulls out a device and pushes the only button on it. After a brief flash, you recognize the interior of the Ceres monitoring station!
 

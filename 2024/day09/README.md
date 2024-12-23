@@ -1,10 +1,10 @@
-## Day 9: Disk Fragmenter
+# Day 9: Disk Fragmenter
 
 [Here](https://adventofcode.com/2024/day/9) is the link to the problem page on advent of code.
 
 The input data for the puzzle can be found in the text file input.txt.
 
-# Part 1
+## Part 1
 
 Another push of the button leaves you in the familiar hallways of some friendly [amphipods](https://adventofcode.com/2021/day/23)! Good thing you each somehow got your own personal mini submarine. The Historians jet away in search of the Chief, mostly by driving directly into walls.
 

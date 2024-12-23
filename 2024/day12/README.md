@@ -1,10 +1,10 @@
-## Day 12: Garden Groups
+# Day 12: Garden Groups
 
 [Here](https://adventofcode.com/2024/day/12) is the link to the problem page on advent of code.
 
 The input data for the puzzle can be found in the text file input.txt.
 
-# Part 1
+## Part 1
 
 Why not search for the Chief Historian near the [gardener](https://adventofcode.com/2023/day/5) and his [massive farm](https://adventofcode.com/2023/day/21)? There's plenty of food, so The Historians grab something to eat while they search.
 

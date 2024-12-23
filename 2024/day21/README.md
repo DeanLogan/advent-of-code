@@ -1,10 +1,10 @@
-## Day 21: Keypad Conundrum
+# Day 21: Keypad Conundrum
 
 [Here](https://adventofcode.com/2024/day/21) is the link to the problem page on advent of code.
 
 The input data for the puzzle can be found in the text file input.txt.
 
-# Part 1
+## Part 1
 
 As you teleport onto Santa's [Reindeer-class starship](https://adventofcode.com/2019/day/25), The Historians begin to panic: someone from their search party is **missing**. A quick life-form scan by the ship's computer reveals that when the missing Historian teleported, he arrived in another part of the ship.
 

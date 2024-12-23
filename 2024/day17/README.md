@@ -1,10 +1,10 @@
-## Day 17: Chronospatial Computer
+# Day 17: Chronospatial Computer
 
 [Here](https://adventofcode.com/2024/day/17) is the link to the problem page on advent of code.
 
 The input data for the puzzle can be found in the text file input.txt.
 
-# Part 1
+## Part 1
 
 The Historians push the button on their strange device, but this time, you all just feel like you're [falling](https://adventofcode.com/2018/day/6).
 

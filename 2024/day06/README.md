@@ -1,10 +1,10 @@
-## Day 6: Guard Gallivant
+# Day 6: Guard Gallivant
 
 [Here](https://adventofcode.com/2024/day/6) is the link to the problem page on advent of code.
 
 The input data for the puzzle can be found in the text file input.txt.
 
-# Part 1
+## Part 1
 
 The Historians use their fancy [device](https://adventofcode.com/2024/day/4) again, this time to whisk you all away to the North Pole prototype suit manufacturing lab... in the year [1518](https://adventofcode.com/2018/day/5)! It turns out that having direct access to history is very convenient for a group of historians.
 

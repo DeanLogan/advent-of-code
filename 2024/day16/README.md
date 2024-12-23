@@ -1,10 +1,10 @@
-## Day 16: Reindeer Maze
+# Day 16: Reindeer Maze
 
 [Here](https://adventofcode.com/2024/day/16) is the link to the problem page on advent of code.
 
 The input data for the puzzle can be found in the text file input.txt.
 
-# Part 1
+## Part 1
 
 It's time again for the [Reindeer Olympics](https://adventofcode.com/2015/day/14)! This year, the big event is the **Reindeer Maze**, where the Reindeer compete for the **lowest score**.
 

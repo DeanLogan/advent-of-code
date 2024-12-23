@@ -133,10 +133,10 @@ func HtmlToReadme(htmlContent string, year string, day string) string {
 	mainContent = h2TagRegex.ReplaceAllStringFunc(mainContent, func(match string) string {
 		inner := h2TagRegex.FindStringSubmatch(match)[1]
 		inner = strings.Trim(inner, "- \t\n") // Remove "---" and surrounding whitespace
-		header := fmt.Sprintf("## %s\n\n", inner)
+		header := fmt.Sprintf("# %s\n\n", inner)
 		if !h2Found {
 			h2Found = true
-			linkText := fmt.Sprintf("[Here](https://adventofcode.com/%s/day/%s) is the link to the problem page on advent of code.\n\nThe input data for the puzzle can be found in the text file input.txt.\n\n# Part 1\n\n", year, day)
+			linkText := fmt.Sprintf("[Here](https://adventofcode.com/%s/day/%s) is the link to the problem page on advent of code.\n\nThe input data for the puzzle can be found in the text file input.txt.\n\n## Part 1\n\n", year, day)
 			return header + linkText
 		}
 		return header
