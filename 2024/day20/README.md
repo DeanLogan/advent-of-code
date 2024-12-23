@@ -6,11 +6,11 @@ The input data for the puzzle can be found in the text file input.txt.
 
 # Part 1
 
-The Historians are quite pixelated again. This time, a massive, black building looms over you - you're right outside the CPU!
+The Historians are quite pixelated again. This time, a massive, black building looms over you - you're [right outside](https://adventofcode.com/2017/day/24) the CPU!
 
 While The Historians get to work, a nearby program sees that you're idle and challenges you to a **race**. Apparently, you've arrived just in time for the frequently-held **race condition** festival!
 
-The race takes place on a particularly long and twisting code path; programs compete to see who can finish in the **fewest picoseconds**. The winner even gets their very own mutex!
+The race takes place on a particularly long and twisting code path; programs compete to see who can finish in the **fewest picoseconds**. The winner even gets their very own [mutex](https://en.wikipedia.org/wiki/Lock_(computer_science))!
 
 They hand you a **map of the racetrack** (your puzzle input). For example:
 
@@ -37,7 +37,7 @@ When a program runs through the racetrack, it starts at the start position. Then
 
 Because there is only a single path from the start to the end and the programs all go the same speed, the races used to be pretty boring. To make things more interesting, they introduced a new rule to the races: programs are allowed to **cheat**.
 
-The rules for cheating are very strict. **Exactly once** during a race, a program may **disable collision** for up to **2 picoseconds**. This allows the program to **pass through walls** as if they were regular track. At the end of the cheat, the program must be back on normal track again; otherwise, it will receive a segmentation fault and get disqualified.
+The rules for cheating are very strict. **Exactly once** during a race, a program may **disable collision** for up to **2 picoseconds**. This allows the program to **pass through walls** as if they were regular track. At the end of the cheat, the program must be back on normal track again; otherwise, it will receive a [segmentation fault](https://en.wikipedia.org/wiki/Segmentation_fault) and get disqualified.
 
 So, a program could complete the course in 72 picoseconds (saving **12 picoseconds**) by cheating for the two moves marked `1` and `2`:
 

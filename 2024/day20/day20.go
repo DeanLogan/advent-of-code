@@ -186,7 +186,43 @@ func constructPath(cameFrom map[Pos]Pos, start, end Pos) []Pos {
     return path
 }
 
+const MAX_CHEAT_LEN = 20
+const AT_LEAST = 100
+
 func part2() {
     ans := 0
+
+    grid := libs.FileToSlice("2024/day20/input.txt", "\n")
+    start := findChar(grid, 'S')
+    end := findChar(grid, 'E')
+
+    _, normalCameFrom := aStar(grid, start, end)
+    normalPath := constructPath(normalCameFrom, start, end)
+
+    normalPathIndices := make(map[Pos]int)
+    for i, point := range normalPath {
+        normalPathIndices[point] = i
+    }
+
+    for startTime, cheatStart := range normalPath {
+        if startTime > len(normalPath)-AT_LEAST {
+            break
+        }
+
+        i := startTime + AT_LEAST
+        for i < len(normalPath) {
+            cheatDist := normalPath[i].Manhattan(cheatStart)
+            if cheatDist > MAX_CHEAT_LEN {
+                i += cheatDist - MAX_CHEAT_LEN
+            } else {
+                savings := i - (startTime + cheatDist)
+                if savings >= AT_LEAST {
+                    ans++
+                }
+                i++
+            }
+        }
+    }
+
     fmt.Println("🎄 The answer to part 2 for day 20 is:", ans, "🎄")
 }
