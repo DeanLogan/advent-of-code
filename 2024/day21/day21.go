@@ -87,6 +87,13 @@ func codeToInteger(input string) (int, error) {
 
 func part2() {
     ans := 0
+
+    codes := libs.FileToSlice("2024/day21/input.txt", "\n")
+    
+    for _, code := range codes {
+        ans += calculateScore(code, 26)
+    }
+
     fmt.Println("🎄 The answer to part 2 for day 21 is:", ans, "🎄")
 }
 
