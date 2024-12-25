@@ -358,3 +358,13 @@ func SwapCharsInStr(str string, index1 int, index2 int) string {
     runes[index1], runes[index2] = runes[index2], runes[index1]
     return string(runes)
 }
+
+// string of binary to decimal converter
+func BinaryToDecimal(binaryStr string) int {
+    decimalValue, err := strconv.ParseInt(binaryStr, 2, 64)
+    if err != nil {
+        fmt.Println("Error converting binary to decimal:", err)
+        return 0
+    }
+    return int(decimalValue)
+}
