@@ -368,3 +368,8 @@ func BinaryToDecimal(binaryStr string) int {
     }
     return int(decimalValue)
 }
+
+// decimal integer to a binary string converter
+func DecimalToBinary(decimal int) string {
+    return strconv.FormatInt(int64(decimal), 2)
+}

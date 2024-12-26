@@ -20,29 +20,6 @@ type gate struct {
     operation string
 }
 
-func sortZGatesAndBinary(zGates, zGatesBinary []string) ([]string, []string) {
-    type pair struct {
-        gate  string
-        value string
-    }
-
-    pairs := make([]pair, len(zGates))
-    for i := range zGates {
-        pairs[i] = pair{zGates[i], zGatesBinary[i]}
-    }
-
-    sort.Slice(pairs, func(i, j int) bool {
-        return pairs[i].gate > pairs[j].gate
-    })
-
-    for i := range pairs {
-        zGates[i] = pairs[i].gate
-        zGatesBinary[i] = pairs[i].value
-    }
-
-    return zGates, zGatesBinary
-}
-
 func part1() {
     ans := 0
 
@@ -51,28 +28,26 @@ func part1() {
     gatesStr := strings.Split(sections[1], "\n")
 
     wireMap := createWireMap(wires)
-
     gates := createGateList(gatesStr)
-
     getAllGateResults(wireMap, gates)
 
-    zGates := []string{}
-    zGatesResult := []string{}
+    ans = libs.BinaryToDecimal(getBinaryForGatesWithChar(wireMap, 'z'))
+
+    fmt.Println("🎄 The answer to part 1 for day 24 is:", ans, "🎄")
+}
+
+func getBinaryForGatesWithChar(wireMap map[string]string, char byte) string {
+    gates := []string{}
+    gatesResults := []string{}
     for name, val := range wireMap {
-        if name[0] == 'z' {
-            zGates = append(zGates, name)
-            zGatesResult = append(zGatesResult, val)
+        if name[0] == char {
+            gates = append(gates, name)
+            gatesResults = append(gatesResults, val)
         }
     }
 
-    zGates, zGatesResult = sortZGatesAndBinary(zGates, zGatesResult)
-    
-
-    zGatesBinary := strings.Join(zGatesResult, "")
-    
-    ans = libs.BinaryToDecimal(zGatesBinary)
-
-    fmt.Println("🎄 The answer to part 1 for day 24 is:", ans, "🎄")
+    _, gatesResults = sortGatesAndBinary(gates, gatesResults)
+    return strings.Join(gatesResults, "")
 }
 
 func createWireMap(wires []string) map[string]string {
@@ -131,7 +106,100 @@ func getAllGateResults(wireMap map[string]string, gates []gate) {
     }
 }
 
-func part2(){
-    ans := 0
+func sortGatesAndBinary(zGates, zGatesBinary []string) ([]string, []string) {
+    type pair struct {
+        gate  string
+        value string
+    }
+
+    pairs := make([]pair, len(zGates))
+    for i := range zGates {
+        pairs[i] = pair{zGates[i], zGatesBinary[i]}
+    }
+
+    sort.Slice(pairs, func(i, j int) bool {
+        return pairs[i].gate > pairs[j].gate
+    })
+
+    for i := range pairs {
+        zGates[i] = pairs[i].gate
+        zGatesBinary[i] = pairs[i].value
+    }
+
+    return zGates, zGatesBinary
+}
+
+func part2() {
+    sections := libs.FileToSlice("2024/day24/input.txt", "\n\n")
+    gatesStr := strings.Split(sections[1], "\n")
+    gates := createGateList(gatesStr)
+
+    ans := processGatesAndSwaps(gates)
+
     fmt.Println("🎄 The answer to part 2 for day 24 is:", ans, "🎄")
+}
+
+func find(wire1, wire2, operator string, gates []gate) string {
+    for _, gate := range gates {
+        if (gate.wire1 == wire1 && gate.operation == operator && gate.wire2 == wire2) ||
+            (gate.wire1 == wire2 && gate.operation == operator && gate.wire2 == wire1) {
+            return gate.gateName
+        }
+    }
+    return ""
+}
+
+func processGatesAndSwaps(gates []gate) string {
+    swapped := []string{}
+    carryIn := ""
+
+    for i := 0; i < 45; i++ {
+        index := fmt.Sprintf("%02d", i)
+        var sum, carryOut, intermediateCarry, finalSum, nextCarry string
+
+        sum = find("x"+index, "y"+index, "XOR", gates)
+        carryOut = find("x"+index, "y"+index, "AND", gates)
+
+        if carryIn != "" {
+            intermediateCarry = find(carryIn, sum, "AND", gates)
+            if intermediateCarry == "" {
+                sum, carryOut = carryOut, sum
+                swapped = append(swapped, sum, carryOut)
+                intermediateCarry = find(carryIn, sum, "AND", gates)
+            }
+
+            finalSum = find(carryIn, sum, "XOR", gates)
+
+            if strings.HasPrefix(sum, "z") {
+                sum, finalSum = finalSum, sum
+                swapped = append(swapped, sum, finalSum)
+            }
+
+            if strings.HasPrefix(carryOut, "z") {
+                carryOut, finalSum = finalSum, carryOut
+                swapped = append(swapped, carryOut, finalSum)
+            }
+
+            if strings.HasPrefix(intermediateCarry, "z") {
+                intermediateCarry, finalSum = finalSum, intermediateCarry
+                swapped = append(swapped, intermediateCarry, finalSum)
+            }
+
+            nextCarry = find(intermediateCarry, carryOut, "OR", gates)
+        }
+
+        if strings.HasPrefix(nextCarry, "z") && nextCarry != "z45" {
+            nextCarry, finalSum = finalSum, nextCarry
+            swapped = append(swapped, nextCarry, finalSum)
+        }
+
+        if carryIn == "" {
+            carryIn = carryOut
+        } else {
+            carryIn = nextCarry
+        }
+    }
+
+    sort.Strings(swapped)
+    return strings.Join(swapped, ",")
 }
