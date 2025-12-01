@@ -373,3 +373,11 @@ func BinaryToDecimal(binaryStr string) int {
 func DecimalToBinary(decimal int) string {
     return strconv.FormatInt(int64(decimal), 2)
 }
+
+// wraps a number into the range (lowerRange, higherRange) using modulo arithmetic
+// e.g. WrapToRange(101, 0, 100) returns 1, and WrapToRange(-1, 0, 100) returns 99
+func WrapToRange(num int, lowerRange int, higherRange int) int {
+    rangeSize := higherRange - lowerRange
+    num = ((num - lowerRange) % rangeSize + rangeSize) % rangeSize + lowerRange
+    return num
+}
