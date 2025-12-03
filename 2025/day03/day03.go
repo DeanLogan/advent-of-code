@@ -16,9 +16,7 @@ func part1(){
     ans := 0
     banks := libs.FileToSlice("2025/day03/input.txt", "\n")
     for _, bank := range banks {
-        largestCharTenCol, pos := findLargestCharacter(bank[:len(bank)-1])
-        largestCharUnitCol, _ := findLargestCharacter(bank[pos+1:])
-        numStr := string(largestCharTenCol)+string(largestCharUnitCol)
+        numStr := searchBank(bank, 2)
         num, _ := strconv.Atoi(numStr)
         ans += num
     }
@@ -38,7 +36,24 @@ func findLargestCharacter(bank string) (rune, int) {
     return largestChar, largestCharIndex
 }
 
+func searchBank(bank string, lenOfNum int) string {
+    numStr := ""
+    for i := lenOfNum-1; i>=0; i-- { 
+        test := len(bank) - i
+        largestChar, pos := findLargestCharacter(bank[:test])
+        bank = bank[pos+1:]
+        numStr += string(largestChar)
+    }
+    return numStr
+}
+
 func part2(){
     ans := 0
+    banks := libs.FileToSlice("2025/day03/input.txt", "\n")
+    for _, bank := range banks {
+        numStr := searchBank(bank, 12)
+        num, _ := strconv.Atoi(numStr)
+        ans += num
+    }
     fmt.Println("🎄 The answer to part 2 for day 03 is:", ans, "🎄")
 }
