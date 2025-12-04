@@ -405,11 +405,13 @@ func GetWidthAndHeight(grid []string) (int, int) {
     return width, height
 }
 
-// CountAdjacentInGrid counts how many adjacent cells around pos equal the target byte.
-func CountAdjacentInByteGrid(grid [][]byte, pos Pos, target byte) int {
+// FindAdjacentInGrid returns a slice of all Pos' where the target was found
+func FindAdjacentInGrid(grid [][]byte, pos Pos, target byte) []Pos {
+    found := []Pos{}
+
     height := len(grid)
     if height == 0 {
-        return 0
+        return found
     }
     width := len(grid[0])
 
@@ -418,8 +420,7 @@ func CountAdjacentInByteGrid(grid [][]byte, pos Pos, target byte) int {
         {-1,  0},          {1,  0},
         {-1,  1}, {0,  1}, {1,  1},
     }
-
-    count := 0
+    
     for _, dir := range directions {
         neighborX := pos.X + dir[0]
         neighborY := pos.Y + dir[1]
@@ -429,8 +430,16 @@ func CountAdjacentInByteGrid(grid [][]byte, pos Pos, target byte) int {
         }
 
         if grid[neighborY][neighborX] == target {
-            count++
+            found = append(found, Pos{neighborX, neighborY})
         }
     }
-    return count
+    return found
+}
+
+// 
+func ReplaceCharAtPos(grid [][]byte, pos Pos, newChar rune) {
+    if pos.Y < 0 || pos.Y >= len(grid) || pos.X < 0 || pos.X >= len(grid[0]) {
+        return
+    }
+    grid[pos.Y][pos.X] = byte(newChar)
 }
