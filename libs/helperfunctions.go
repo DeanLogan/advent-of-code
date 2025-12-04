@@ -14,6 +14,11 @@ import (
 	I created a mini library of functions that I can use.
 */
 
+type Pos struct {
+    X int
+    Y int
+}
+
 // AllFileContent reads a file and returns its content as a byte slice.
 func AllFileContent(filePath string) []byte {
     content, err := os.ReadFile(filePath)
@@ -48,6 +53,17 @@ func GetScannerForFile(filePath string) *bufio.Scanner {
     }
 
     return bufio.NewScanner(file)
+}
+
+// FileToByteGrid takes a filepath and turns the content of that file into a 2D byte grid.
+func FileToByteGrid(filePath string) [][]byte {
+    lines := FileToSlice(filePath, "\n")
+    height, width := GetWidthAndHeight(lines)
+    grid := make([][]byte, height)
+    for y := 0; y < width; y++ {
+        grid[y] = []byte(lines[y])
+    }
+    return grid
 }
 
 // SplitAtChar splits a string at the last occurrence of a given character.
@@ -380,4 +396,41 @@ func WrapToRange(num int, lowerRange int, higherRange int) int {
     rangeSize := higherRange - lowerRange
     num = ((num - lowerRange) % rangeSize + rangeSize) % rangeSize + lowerRange
     return num
+}
+
+// GetWidthAndHeight returns the width and height for a grid represented as a []string.
+func GetWidthAndHeight(grid []string) (int, int) {
+    height := len(grid)
+    width := len(grid[0])
+    return width, height
+}
+
+// CountAdjacentInGrid counts how many adjacent cells around pos equal the target byte.
+func CountAdjacentInByteGrid(grid [][]byte, pos Pos, target byte) int {
+    height := len(grid)
+    if height == 0 {
+        return 0
+    }
+    width := len(grid[0])
+
+    directions := [8][2]int{
+        {-1, -1}, {0, -1}, {1, -1},
+        {-1,  0},          {1,  0},
+        {-1,  1}, {0,  1}, {1,  1},
+    }
+
+    count := 0
+    for _, dir := range directions {
+        neighborX := pos.X + dir[0]
+        neighborY := pos.Y + dir[1]
+
+        if neighborX < 0 || neighborY < 0 || neighborY >= height || neighborX >= width {
+            continue
+        }
+
+        if grid[neighborY][neighborX] == target {
+            count++
+        }
+    }
+    return count
 }
