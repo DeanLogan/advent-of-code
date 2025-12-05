@@ -21,6 +21,7 @@ type Range struct {
 
 func part1(){
     ans := 0
+
     fileSections := libs.FileToSlice("2025/day05/input.txt", "\n\n")
     rangesStr := strings.Split(fileSections[0], "\n")
     ranges := createRangeArray(rangesStr)
@@ -37,6 +38,7 @@ func part1(){
             ans++
         }
     }
+
     fmt.Println("🎄 The answer to part 1 for day 05 is:", ans, "🎄")
 }
 
@@ -74,5 +76,20 @@ func checkIdInRanges(id int, ranges []Range) bool {
 
 func part2(){
     ans := 0
+
+    fileSections := libs.FileToSlice("2025/day05/input.txt", "\n\n")
+    rangesStr := strings.Split(fileSections[0], "\n")
+    ranges := createRangeArray(rangesStr)
+
+    sort.Slice(ranges, func(i, j int) bool {
+        return ranges[i].start < ranges[j].start
+    })
+
+    ranges = mergeRanges(ranges)
+
+    for _, idRange := range ranges {
+        ans += idRange.end - idRange.start + 1 // + 1 for the number left over in the range calculation
+    }
+
     fmt.Println("🎄 The answer to part 2 for day 05 is:", ans, "🎄")
 }
