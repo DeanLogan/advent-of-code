@@ -436,7 +436,7 @@ func FindAdjacentInGrid(grid [][]byte, pos Pos, target byte) []Pos {
     return found
 }
 
-// 
+// Replaces the character at the given position (x, y) in a 2d (grid) of bytes
 func ReplaceCharAtPos(grid [][]byte, pos Pos, newChar rune) {
     if pos.Y < 0 || pos.Y >= len(grid) || pos.X < 0 || pos.X >= len(grid[0]) {
         return
