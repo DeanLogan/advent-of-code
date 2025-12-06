@@ -38,6 +38,7 @@ func create2dSlice(lines []string) [][]string {
 func removeEmptyStrings(slice []string) []string {
     newSlice := []string{}
     for _, str := range slice {
+        str = strings.ReplaceAll(str, " ", "")
         if str != "" {
             newSlice = append(newSlice, str)
         }
@@ -64,5 +65,35 @@ func solveCephalopodMathsEquation(equation []string) int {
 
 func part2(){
     ans := 0
+
+    lines := libs.FileToSlice("2025/day06/input.txt", "\n")
+    transposed := libs.TransposeStringSlice(lines)
+    orderedLines := removeEmptyStrings(transposed)
+    reforamtedLines := reformatTransposed(orderedLines)
+
+    for i:=1; i<len(reforamtedLines); i++ {
+        ans += solveCephalopodMathsEquation(reforamtedLines[i])
+    }
+
     fmt.Println("🎄 The answer to part 2 for day 06 is:", ans, "🎄")
+}
+
+func reformatTransposed(transposed[]string) [][]string {
+    newSlice := [][]string{}
+    tmp := []string{}
+    op := ""
+    for _, str := range transposed {
+        op = string(str[len(str)-1])
+        if str[len(str)-1] == '+' || str[len(str)-1] == '*' {
+            libs.SwapInSlice(tmp, 0, len(tmp)-1)
+            newSlice = append(newSlice, tmp)
+            tmp = []string{}
+            tmp = append(tmp, op)
+            str = str[:len(str)-1]
+        }
+        tmp = append(tmp, str)
+    }
+    libs.SwapInSlice(tmp, 0, len(tmp)-1)
+    newSlice = append(newSlice, tmp)
+    return newSlice
 }

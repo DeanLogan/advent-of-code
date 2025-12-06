@@ -396,6 +396,13 @@ func SwapCharsInStr(str string, index1 int, index2 int) string {
     return string(runes)
 }
 
+// swaps the element at index1 with the element at index2 in any slice type
+func SwapInSlice[T any](slice []T, index1, index2 int) {
+    if index1 >= 0 && index1 < len(slice) && index2 >= 0 && index2 < len(slice) {
+        slice[index1], slice[index2] = slice[index2], slice[index1]
+    }
+}
+
 // string of binary to decimal converter
 func BinaryToDecimal(binaryStr string) int {
     decimalValue, err := strconv.ParseInt(binaryStr, 2, 64)
