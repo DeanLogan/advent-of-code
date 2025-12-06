@@ -269,6 +269,27 @@ func TransposeStringSlice(slice []string) []string {
     return transposed
 }
 
+// Transposes a 2D slice of any type.
+func Transpose2DSlice[T any](matrix [][]T) [][]T {
+    if len(matrix) == 0 {
+        return [][]T{}
+    }
+
+    rows, cols := len(matrix), len(matrix[0])
+    transposed := make([][]T, cols)
+    for i := range transposed {
+        transposed[i] = make([]T, rows)
+    }
+
+    for i := 0; i < rows; i++ {
+        for j := 0; j < cols; j++ {
+            transposed[j][i] = matrix[i][j]
+        }
+    }
+
+    return transposed
+}
+
 // Rotate45 rotates a string slice 45 degrees (diagnoly) clockwise or counter-clockwise based on the clockwise flag
 func Rotate45(slice []string, clockwise bool) []string {
     if len(slice) == 0 {
