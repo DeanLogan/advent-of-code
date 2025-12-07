@@ -58,9 +58,12 @@ func GetScannerForFile(filePath string) *bufio.Scanner {
 // FileToByteGrid takes a filepath and turns the content of that file into a 2D byte grid.
 func FileToByteGrid(filePath string) [][]byte {
     lines := FileToSlice(filePath, "\n")
-    height, width := GetWidthAndHeight(lines)
+    if len(lines) == 0 {
+        return [][]byte{}
+    }
+    _, height := GetWidthAndHeight(lines)
     grid := make([][]byte, height)
-    for y := 0; y < width; y++ {
+    for y := 0; y < height; y++ {
         grid[y] = []byte(lines[y])
     }
     return grid
@@ -470,4 +473,16 @@ func ReplaceCharAtPos(grid [][]byte, pos Pos, newChar rune) {
         return
     }
     grid[pos.Y][pos.X] = byte(newChar)
+}
+
+func FindAllPostOfCharInGrid(grid [][]byte, charToFind byte) []Pos {
+    positions := []Pos{}
+    for y, row := range grid {
+        for x, char := range row {
+            if char == charToFind {
+                positions = append(positions, Pos{X: x, Y: y})
+            }
+        }
+    }
+    return positions
 }
