@@ -16,7 +16,7 @@ func part1(){
     grid := libs.FileToByteGrid("2025/day07/input.txt")
 
     beamPositions := getBeamPositions(grid)
-
+    
     for _, row := range grid {
         nextBeamPositions := make(map[int]int)
         
@@ -50,5 +50,29 @@ func getBeamPositions(grid [][]byte) map[int]int {
 
 func part2(){
     ans := 0
+    grid := libs.FileToByteGrid("2025/day07/input.txt")
+
+    beamPositions := getBeamPositions(grid)
+    
+    for _, row := range grid {
+        nextBeamPositions := make(map[int]int)
+        
+        for i, val := range row {
+            if beamPositions[i] > 0 {
+                if val == '^' {
+                    nextBeamPositions[i-1] += beamPositions[i]
+                    nextBeamPositions[i+1] += beamPositions[i]
+                } else {
+                    nextBeamPositions[i] += beamPositions[i]
+                }
+            }
+        }
+        beamPositions = nextBeamPositions
+    }
+
+	for _, val := range beamPositions {
+		ans += val
+	}
+
     fmt.Println("🎄 The answer to part 2 for day 07 is:", ans, "🎄")
 }
