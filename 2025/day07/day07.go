@@ -12,29 +12,9 @@ func main(){
 }
 
 func part1(){
-    ans := 0
     grid := libs.FileToByteGrid("2025/day07/input.txt")
-
-    beamPositions := getBeamPositions(grid)
-    
-    for _, row := range grid {
-        nextBeamPositions := make(map[int]int)
-        
-        for i, val := range row {
-            if beamPositions[i] > 0 {
-                if val == '^' {
-                    nextBeamPositions[i-1] += beamPositions[i]
-                    nextBeamPositions[i+1] += beamPositions[i]
-                    ans++
-                } else {
-                    nextBeamPositions[i] += beamPositions[i]
-                }
-            }
-        }
-        beamPositions = nextBeamPositions
-    }
-
-    fmt.Println("🎄 The answer to part 1 for day 07 is:", ans, "🎄")
+    splits, _ := simulateBeams(grid)
+    fmt.Println("🎄 The answer to part 1 for day 07 is:", splits, "🎄")
 }
 
 func getBeamPositions(grid [][]byte) map[int]int {
@@ -48,12 +28,10 @@ func getBeamPositions(grid [][]byte) map[int]int {
     return beamPositions
 }
 
-func part2(){
-    ans := 0
-    grid := libs.FileToByteGrid("2025/day07/input.txt")
-
+func simulateBeams(grid [][]byte) (int, map[int]int) {
+    splits := 0
     beamPositions := getBeamPositions(grid)
-    
+
     for _, row := range grid {
         nextBeamPositions := make(map[int]int)
         
@@ -62,6 +40,7 @@ func part2(){
                 if val == '^' {
                     nextBeamPositions[i-1] += beamPositions[i]
                     nextBeamPositions[i+1] += beamPositions[i]
+                    splits++
                 } else {
                     nextBeamPositions[i] += beamPositions[i]
                 }
@@ -69,10 +48,16 @@ func part2(){
         }
         beamPositions = nextBeamPositions
     }
+    return splits, beamPositions
+}
 
-	for _, val := range beamPositions {
-		ans += val
-	}
+func part2(){
+    grid := libs.FileToByteGrid("2025/day07/input.txt")
+    _, beamPositions := simulateBeams(grid)
 
+    ans := 0
+    for _, val := range beamPositions {
+        ans += val
+    }
     fmt.Println("🎄 The answer to part 2 for day 07 is:", ans, "🎄")
 }
