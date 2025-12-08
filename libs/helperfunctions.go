@@ -2,11 +2,12 @@ package libs
 
 import (
     "fmt"
-	"bufio"
-	"log"
-	"os"
-	"strconv"
-	"strings"
+    "bufio"
+    "log"
+    "math"
+    "os"
+    "strconv"
+    "strings"
 )
 
 /*
@@ -15,8 +16,11 @@ import (
 */
 
 type Pos struct {
-    X int
-    Y int
+    X, Y int
+}
+
+type Pos3D struct{
+    X, Y, Z int
 }
 
 // AllFileContent reads a file and returns its content as a byte slice.
@@ -467,7 +471,7 @@ func FindAdjacentInGrid(grid [][]byte, pos Pos, target byte) []Pos {
     return found
 }
 
-// Replaces the character at the given position (x, y) in a 2d (grid) of bytes
+// Replaces the character at the given position (x, y) in a 2d grid of bytes
 func ReplaceCharAtPos(grid [][]byte, pos Pos, newChar rune) {
     if pos.Y < 0 || pos.Y >= len(grid) || pos.X < 0 || pos.X >= len(grid[0]) {
         return
@@ -475,7 +479,8 @@ func ReplaceCharAtPos(grid [][]byte, pos Pos, newChar rune) {
     grid[pos.Y][pos.X] = byte(newChar)
 }
 
-func FindAllPostOfCharInGrid(grid [][]byte, charToFind byte) []Pos {
+// Returns a list of all of the positions (x, y) of a charcter in a 2d grid of bytes
+func FindAllPosOfCharInGrid(grid [][]byte, charToFind byte) []Pos {
     positions := []Pos{}
     for y, row := range grid {
         for x, char := range row {
@@ -485,4 +490,11 @@ func FindAllPostOfCharInGrid(grid [][]byte, charToFind byte) []Pos {
         }
     }
     return positions
+}
+
+func EuclideanDistance3D(point1 Pos3D, point2 Pos3D) float64 {
+    dx := point2.X - point1.X
+    dy := point2.Y - point1.Y
+    dz := point2.Z - point1.Z
+    return math.Sqrt(float64(dx*dx + dy*dy + dz*dz))
 }
