@@ -114,7 +114,54 @@ func bfsComponentSize(start int, graph map[int][]int, visited []bool) int {
 }
 
 func part2(){
-    ans := 0
-    fmt.Println("🎄 The answer to part 2 for day 08 is:", ans, "🎄")
+    lines := libs.FileToSlice("2025/day08/input.txt", "\n")
+    coords := parseCoords(lines)
+    edges := computeEdges(coords)
+    
+    graph := make(map[int][]int)
+    for i := range len(coords) {
+        graph[i] = []int{}
+    }
+    
+    cableLength := 0
+    
+    for _, e := range edges {
+        graph[e.node1] = append(graph[e.node1], e.node2)
+        graph[e.node2] = append(graph[e.node2], e.node1)
+        
+        if isFullyConnected(graph, len(coords)) {
+            x1 := coords[e.node1].X
+            x2 := coords[e.node2].X
+            cableLength = x1 * x2
+            break
+        }
+    }
+    
+    fmt.Println("🎄 The answer to part 2 for day 08 is:", cableLength, "🎄")
 }
 
+func isFullyConnected(graph map[int][]int, nodeCount int) bool {
+    if nodeCount == 0 {
+        return true
+    }
+    
+    visited := make([]bool, nodeCount)
+    queue := []int{0}
+    visited[0] = true
+    count := 0
+    
+    for len(queue) > 0 {
+        node := queue[0]
+        queue = queue[1:]
+        count++
+        
+        for _, neighbor := range graph[node] {
+            if !visited[neighbor] {
+                visited[neighbor] = true
+                queue = append(queue, neighbor)
+            }
+        }
+    }
+    
+    return count == nodeCount
+}
