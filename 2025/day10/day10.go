@@ -23,6 +23,11 @@ type State struct {
     presses int
 }
 
+type Pattern struct {
+    pattern []int
+    cost    int
+}
+
 func part1(){
     ans := 0
     lines := libs.FileToSlice("2025/day10/input.txt", "\n")
@@ -168,7 +173,177 @@ func solveBFS(machine Machine) int {
     return -1
 }
 
+// can't take credit for the solution to part 2 found this on reddit in the reddit thread it links to a python solution which I just reimplemented in go
+//  https://www.reddit.com/r/adventofcode/comments/1pk87hl/2025_day_10_part_2_bifurcate_your_way_to_victory/
+
 func part2(){
-    ans := 0
-    fmt.Println("🎄 The answer to part 2 for day 10 is:", ans, "🎄")
+    score := 0
+    lines := libs.FileToSlice("2025/day10/input.txt", "\n")
+    
+    for i, line := range lines {
+        coeffs, goal := parseLine(line)
+        subscore := solveSingle(coeffs, goal)
+        fmt.Printf("Line %d/%d: answer %d\n", i+1, len(lines), subscore)
+        score += subscore
+    }
+    
+    fmt.Println("🎄 The answer to part 2 for day 10 is:", score, "🎄")
+}
+
+func parseLine(line string) ([][]int, []int) {
+    joltage := extractJoltage(line)
+    buttons := extractButtons(line)
+    
+    var coeffs [][]int
+    for _, button := range buttons {
+        coeff := make([]int, len(joltage))
+        for _, idx := range button {
+            coeff[idx] = 1
+        }
+        coeffs = append(coeffs, coeff)
+    }
+    
+    return coeffs, joltage
+}
+
+func patterns(coeffs [][]int) map[string][]Pattern {
+    numButtons := len(coeffs)
+    numVariables := len(coeffs[0])
+    
+    out := make(map[string][]Pattern)
+    
+    for numPressed := 0; numPressed <= numButtons; numPressed++ {
+        combinations := generateCombinations(numButtons, numPressed)
+        
+        for _, buttons := range combinations {
+            pattern := make([]int, numVariables)
+            for _, btnIdx := range buttons {
+                for i := 0; i < numVariables; i++ {
+                    pattern[i] += coeffs[btnIdx][i]
+                }
+            }
+            
+            parityPattern := make([]int, numVariables)
+            for i := 0; i < numVariables; i++ {
+                parityPattern[i] = pattern[i] % 2
+            }
+            parityKey := libs.IntSliceToStr(parityPattern, ",")
+            
+            exists := false
+            for _, p := range out[parityKey] {
+                if intSliceEquals(p.pattern, pattern) {
+                    exists = true
+                    break
+                }
+            }
+            
+            if !exists {
+                out[parityKey] = append(out[parityKey], Pattern{
+                    pattern: pattern,
+                    cost:    numPressed,
+                })
+            }
+        }
+    }
+    
+    return out
+}
+
+func generateCombinations(n, k int) [][]int {
+    if k == 0 {
+        return [][]int{{}}
+    }
+    if k > n {
+        return [][]int{}
+    }
+    
+    var result [][]int
+    var helper func(start int, current []int)
+    
+    helper = func(start int, current []int) {
+        if len(current) == k {
+            combo := make([]int, k)
+            copy(combo, current)
+            result = append(result, combo)
+            return
+        }
+        
+        for i := start; i < n; i++ {
+            helper(i+1, append(current, i))
+        }
+    }
+    
+    helper(0, []int{})
+    return result
+}
+
+func solveSingle(coeffs [][]int, goal []int) int {
+    patternCosts := patterns(coeffs)
+    cache := make(map[string]int)
+    
+    var solve func([]int) int
+    solve = func(currentGoal []int) int {
+        allZero := true
+        for _, v := range currentGoal {
+            if v != 0 {
+                allZero = false
+                break
+            }
+        }
+        if allZero {
+            return 0
+        }
+        
+        key := libs.IntSliceToStr(currentGoal, ",")
+        if val, ok := cache[key]; ok {
+            return val
+        }
+        
+        answer := 1000000
+        
+        parity := make([]int, len(currentGoal))
+        for i := 0; i < len(currentGoal); i++ {
+            parity[i] = currentGoal[i] % 2
+        }
+        parityKey := libs.IntSliceToStr(parity, ",")
+        
+        for _, p := range patternCosts[parityKey] {
+            fits := true
+            for i := 0; i < len(p.pattern); i++ {
+                if p.pattern[i] > currentGoal[i] {
+                    fits = false
+                    break
+                }
+            }
+            
+            if fits {
+                newGoal := make([]int, len(currentGoal))
+                for i := 0; i < len(currentGoal); i++ {
+                    newGoal[i] = (currentGoal[i] - p.pattern[i]) / 2
+                }
+                
+                subResult := solve(newGoal)
+                if p.cost + 2*subResult < answer {
+                    answer = p.cost + 2*subResult
+                }
+            }
+        }
+        
+        cache[key] = answer
+        return answer
+    }
+    
+    return solve(goal)
+}
+
+func intSliceEquals(a, b []int) bool {
+    if len(a) != len(b) {
+        return false
+    }
+    for i := range a {
+        if a[i] != b[i] {
+            return false
+        }
+    }
+    return true
 }
