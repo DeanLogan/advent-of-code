@@ -498,3 +498,15 @@ func EuclideanDistance3D(point1 Pos3D, point2 Pos3D) float64 {
     dz := point2.Z - point1.Z
     return math.Sqrt(float64(dx*dx + dy*dy + dz*dz))
 }
+
+func CompareSlices[T comparable](a, b []T) bool {
+    if len(a) != len(b) {
+        return false
+    }
+    for i := range a {
+        if a[i] != b[i] {
+            return false
+        }
+    }
+    return true
+}
